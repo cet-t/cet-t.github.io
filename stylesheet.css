@@ -46,8 +46,8 @@ tbody {
 }
 
 ul {
-
     text-align: center;
+    align-items: center;
 }
 
 /* ----------- リンク ----------- */
