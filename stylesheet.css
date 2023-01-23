@@ -5,6 +5,13 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.texts {
+    text-align: center;
+    color: #b68b3d;
+    font-size: 50px;
+    height: 15px;
+}
+
 .text-or {
     text-align: center;
     color: #b68b3d;
