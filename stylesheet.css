@@ -8,14 +8,14 @@ body {
     color: #add8e6;
 }
 
-table{
-    width: 100%;
+th,td{
+    border:solid 1px #aaaaaa;
 }
-  
-th{
-    width: 30%;
+
+th,td{
+    border:double 2px #2196f3;
 }
-  
-td{
-    width: 70%;
+
+th,td{
+    border:dashed 2px #f44336;
 }
