@@ -9,13 +9,11 @@ body {
 }
 
 th,td{
-    border:solid 1px #aaaaaa;
+    color:white;
+    background-color: #2196f3;
 }
 
 th,td{
-    border:double 2px #9ac8ee;
-}
-
-th,td{
-    border:dashed 2px #f08981;
+    color:white;
+    background-color: #f44336;
 }
