@@ -45,6 +45,11 @@ tbody {
     background-color: #faf7f7; 
 }
 
+ul {
+
+    text-align: center;
+}
+
 /* ----------- リンク ----------- */
 a:link {
     color: rgb(236, 164, 122);
