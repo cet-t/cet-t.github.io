@@ -1,4 +1,4 @@
-function check(){
+function check() {
     var fileList = document.getElementById("sFiles").files;
     var list = "";
     for(var i=0; i<fileList.length; i++){
