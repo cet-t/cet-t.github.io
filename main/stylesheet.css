@@ -5,6 +5,11 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.tax-body {
+    background-color: #a2d69d;
+    font-family: 'Ubuntu', sans-serif;
+}
+
 header {
     z-index: 10;
     height: 64px;
