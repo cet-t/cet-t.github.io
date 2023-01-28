@@ -36,12 +36,6 @@ li a {
 	padding: 20px;
 }
 
-.text-or {
-    text-align: center;
-    color: #51b63d;
-    font-size: 25px;
-}
-
 /* ----------- テーブル ----------- */
 table {
     border-collapse: collapse;
@@ -54,18 +48,18 @@ table {
 }
 
 th, td {
-    color: #155508;
+    color: #207e0e;
     padding: 5px 15px;
     border: solid 1px #c2ebb9;
 }
 
 thead {
-    color: #094900;
+    color: #0e7a00;
     background-color: #bcfab6; 
 }
 
 tbody {
-    color: #005800;
+    color: #007a00;
     background-color: #f7faf7; 
 }
 
