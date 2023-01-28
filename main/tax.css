@@ -1,7 +1,7 @@
 ﻿@charset "utf-8";
 
 body {
-    background-color: #ffffff;
+    background-color: #d2ffce;
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -31,22 +31,16 @@ li {
 li a {
 	text-decoration: none;
 	text-align: center;
-	color:rgb(255, 252, 250);
+	color:rgb(251, 255, 250);
 	font-weight: bold;
 	padding: 20px;
-}
-
-.text-or {
-    text-align: center;
-    color: #b68b3d;
-    font-size: 25px;
 }
 
 /* ----------- テーブル ----------- */
 table {
     border-collapse: collapse;
     color: #333;
-    background-color: #FFF;
+    background-color: rgb(255, 255, 255);
     text-align: center;
     
     width: 400px;
@@ -54,43 +48,43 @@ table {
 }
 
 th, td {
-    color: #b68b3d;
+    color: #207e0e;
     padding: 5px 15px;
-    border: solid 1px #f1c1a5;
+    border: solid 1px #c2ebb9;
 }
 
 thead {
-    color: #b87700;
-    background-color: #fad5b6; 
+    color: #0e7a00;
+    background-color: #bcfab6; 
 }
 
 tbody {
-    color: #b87700;
-    background-color: #faf7f7; 
+    color: #007a00;
+    background-color: #f7faf7; 
 }
 
 /* ----------- リンク ----------- */
 a:link {
-    color: rgb(236, 164, 122);
+    color: rgb(90, 129, 89);
     text-decoration: none;
 }
 
 a:visited {
-    color: rgb(236, 164, 122);
+    color: rgb(90, 129, 89);
     text-decoration: none;
 }
 
 a:hover {
-    color: rgb(235, 131, 70);
     text-decoration: none;
+    color: rgb(100, 192, 96);
 }
 
 a:active {
-    color: rgb(235, 131, 70);
+    color: rgb(100, 192, 96);
     text-decoration: none;
 }
 
 a:target {
-    color: rgb(235, 131, 70);
+    color: rgb(90, 129, 89);
     text-decoration: none;
 }
