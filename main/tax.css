@@ -71,26 +71,26 @@ tbody {
 
 /* ----------- リンク ----------- */
 a:link {
-    color: rgb(82, 153, 73);
+    color: rgb(17, 83, 15);
     text-decoration: none;
 }
 
 a:visited {
-    color: rgb(71, 146, 71);
+    color: rgb(17, 83, 15);
     text-decoration: none;
 }
 
 a:hover {
-    color: rgb(35, 117, 32);
+    color: rgb(17, 83, 15);
     text-decoration: none;
 }
 
 a:active {
-    color: rgb(40, 138, 37);
+    color: rgb(24, 117, 21);
     text-decoration: none;
 }
 
 a:target {
-    color: rgb(31, 117, 28);
+    color: rgb(17, 83, 15);
     text-decoration: none;
 }
