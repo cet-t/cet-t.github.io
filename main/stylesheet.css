@@ -73,22 +73,9 @@ tbody {
     color: #b87700;
     background-color: #faf7f7; 
 }
-
-/* tax table */
-th, td {
-    color: #b68b3d;
-    padding: 5px 15px;
-    border: solid 1px #f1c1a5;
-}
-
-thead {
-    color: #b87700;
-    background-color: #fad5b6; 
-}
-
-tbody {
-    color: #b87700;
-    background-color: #faf7f7; 
+tax-body {
+    color: #44b800;
+    background-color: #f7faf7; 
 }
 
 /* ----------- リンク ----------- */
