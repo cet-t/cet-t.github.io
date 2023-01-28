@@ -56,16 +56,16 @@ table {
 th, td {
     color: #155508;
     padding: 5px 15px;
-    border: solid 1px #b2f1a5;
+    border: solid 1px #c2ebb9;
 }
 
 thead {
-    color: #15b800;
+    color: #094900;
     background-color: #bcfab6; 
 }
 
 tbody {
-    color: #00b800;
+    color: #005800;
     background-color: #f7faf7; 
 }
 
