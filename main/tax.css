@@ -1,0 +1,96 @@
+﻿@charset "utf-8";
+
+body {
+    background-color: #d2ffce;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+header {
+    z-index: 10;
+    height: 64px;
+    position: absolute;
+    top: 300px;
+    background-color: #333;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+ul {
+	list-style: none;
+	display: flex;
+}
+
+li {
+	text-decoration: none;
+	text-align: center;
+	margin-right: 5px;
+}
+
+li a {
+	text-decoration: none;
+	text-align: center;
+	color:rgb(251, 255, 250);
+	font-weight: bold;
+	padding: 20px;
+}
+
+.text-or {
+    text-align: center;
+    color: #51b63d;
+    font-size: 25px;
+}
+
+/* ----------- テーブル ----------- */
+table {
+    border-collapse: collapse;
+    color: #333;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    
+    width: 400px;
+    max-width: 100%;
+}
+
+th, td {
+    color: #51b63d;
+    padding: 5px 15px;
+    border: solid 1px #b2f1a5;
+}
+
+thead {
+    color: #15b800;
+    background-color: #bcfab6; 
+}
+
+tbody {
+    color: #00b800;
+    background-color: #f7faf7; 
+}
+
+/* ----------- リンク ----------- */
+a:link {
+    color: rgb(135, 236, 122);
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgb(122, 236, 122);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(76, 235, 70);
+    text-decoration: none;
+}
+
+a:active {
+    color: rgb(76, 235, 70);
+    text-decoration: none;
+}
+
+a:target {
+    color: rgb(76, 235, 70);
+    text-decoration: none;
+}
