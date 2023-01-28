@@ -75,7 +75,7 @@ a:visited {
 }
 
 a:hover {
-    color: rgb(90, 129, 89);
+    color: rgb(100, 192, 96);
     text-decoration: none;
 }
 
@@ -85,6 +85,6 @@ a:active {
 }
 
 a:target {
-    color: rgb(91, 182, 88);
+    color: rgb(90, 129, 89);
     text-decoration: none;
 }
