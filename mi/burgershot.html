@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html lang="en" id="main">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../src/mi/stylesheet.css">
+        <title>burgershot</title>
+        <link rel="icon" type="image/png" href="../src/mi/icons/burgershot.png">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <input type="image" src="../src/mi/icons/burgershot.png" id="reloadButton" width="100" height="100">
+        <br>
+        <div id="main2">
+            <!-- <div id="invoice" style="display: table-cell; width: 50%;"> -->
+            <div id="invoice">
+                <label style="font-size: 200%;">請求書</label>
+                <br>
+                <label>ブリーダー</label>
+                <input type="number" placeholder="個数" id="breeder" min="0" max="999">
+                <button type="button" id="breederInc0" style="background-color:cornflowerblue; color: beige;">+1</button>
+                <button type="button" id="breederInc1" style="background-color:cornflowerblue; color: beige;">+5</button>
+                <button type="button" id="breederInc2" style="background-color:cornflowerblue; color: beige;">+20</button>
+                <button type="button" id="breederDec0" style="background-color:darksalmon; color: beige;">-20</button>
+                <button type="button" id="breederDec1" style="background-color:darksalmon; color: beige;">-5</button>
+                <button type="button" id="breederDec2" style="background-color:darksalmon; color: beige;">-1</button>
+                <br>
+                <label>ブリーダーセット</label>
+                <input type="number" placeholder="個数" id="breederSet" min="0" max="999">
+                <button type="button" id="breederSetInc0" style="background-color:cornflowerblue; color: beige;">+1</button>
+                <button type="button" id="breederSetInc1" style="background-color:cornflowerblue; color: beige;">+5</button>
+                <button type="button" id="breederSetInc2" style="background-color:cornflowerblue; color: beige;">+20</button>
+                <button type="button" id="breederSetDec0" style="background-color:darksalmon; color: beige;">-20</button>
+                <button type="button" id="breederSetDec1" style="background-color:darksalmon; color: beige;">-5</button>
+                <button type="button" id="breederSetDec2" style="background-color:darksalmon; color: beige;">-1</button>
+                <br>
+                <label>ビックキング</label>
+                <input type="number" placeholder="個数" id="bicking" min="0" max="999">
+                <button type="button" id="bickingInc0" style="background-color:cornflowerblue; color: beige;">+1</button>
+                <button type="button" id="bickingInc1" style="background-color:cornflowerblue; color: beige;">+5</button>
+                <button type="button" id="bickingInc2" style="background-color:cornflowerblue; color: beige;">+20</button>
+                <button type="button" id="bickingDec0" style="background-color:darksalmon; color: beige;">-20</button>
+                <button type="button" id="bickingDec1" style="background-color:darksalmon; color: beige;">-5</button>
+                <button type="button" id="bickingDec2" style="background-color:darksalmon; color: beige;">-1</button>
+                <br>
+                <label>ビックキングセット</label>
+                <input type="number" placeholder="個数" id="bickingSet" min="0" max="999">
+                <button type="button" id="bickingSetInc0" style="background-color:cornflowerblue; color: beige;">+1</button>
+                <button type="button" id="bickingSetInc1" style="background-color:cornflowerblue; color: beige;">+5</button>
+                <button type="button" id="bickingSetInc2" style="background-color:cornflowerblue; color: beige;">+20</button>
+                <button type="button" id="bickingSetDec0" style="background-color:darksalmon; color: beige;">-20</button>
+                <button type="button" id="bickingSetDec1" style="background-color:darksalmon; color: beige;">-5</button>
+                <button type="button" id="bickingSetDec2" style="background-color:darksalmon; color: beige;">-1</button>
+                <br>
+                <label>コーヒーセット</label>
+                <input type="number"placeholder="個数" id="coffeeSet" min="0" max="999">
+                <button type="button" id="coffeeSetInc0" style="background-color:cornflowerblue; color: beige;">+1</button>
+                <button type="button" id="coffeeSetInc1" style="background-color:cornflowerblue; color: beige;">+5</button>
+                <button type="button" id="coffeeSetInc2" style="background-color:cornflowerblue; color: beige;">+20</button>
+                <button type="button" id="coffeeSetDec0" style="background-color:darksalmon; color: beige;">-20</button>
+                <button type="button" id="coffeeSetDec1" style="background-color:darksalmon; color: beige;">-5</button>
+                <button type="button" id="coffeeSetDec2" style="background-color:darksalmon; color: beige;">-1</button>
+                <br>
+                <label>コーラ大</label>
+                <input type="number" placeholder="個数" id="cokeL" min="0" max="999">
+                <button type="button" id="cokeLInc0" style="background-color:cornflowerblue; color: beige;">+1</button>
+                <button type="button" id="cokeLInc1" style="background-color:cornflowerblue; color: beige;">+5</button>
+                <button type="button" id="cokeLInc2" style="background-color:cornflowerblue; color: beige;">+20</button>
+                <button type="button" id="cokeLDec0" style="background-color:darksalmon; color: beige;">-20</button>
+                <button type="button" id="cokeLDec1" style="background-color:darksalmon; color: beige;">-5</button>
+                <button type="button" id="cokeLDec2" style="background-color:darksalmon; color: beige;">-1</button>
+                <br>
+                <label>コーラ小</label>
+                <input type="number" placeholder="個数" id="cokeS" min="0" max="999">
+                <button type="button" id="cokeSInc0" style="background-color:cornflowerblue; color: beige;">+1</button>
+                <button type="button" id="cokeSInc1" style="background-color:cornflowerblue; color: beige;">+5</button>
+                <button type="button" id="cokeSInc2" style="background-color:cornflowerblue; color: beige;">+20</button>
+                <button type="button" id="cokeSDec0" style="background-color:darksalmon; color: beige;">-20</button>
+                <button type="button" id="cokeSDec1" style="background-color:darksalmon; color: beige;">-5</button>
+                <button type="button" id="cokeSDec2" style="background-color:darksalmon; color: beige;">-1</button>
+                <br><br>
+                <label>割引(百分率)</label>
+                <input type="number" placeholder="割引率" id="saleRatio" min="0" max="100">
+                <button type="button" id="saleRatioInc0" style="background-color:cornflowerblue; color: beige;">+1</button>
+                <button type="button" id="saleRatioInc1" style="background-color:cornflowerblue; color: beige;">+5</button>
+                <button type="button" id="saleRatioInc2" style="background-color:cornflowerblue; color: beige;">+20</button>
+                <button type="button" id="saleRatioDec0" style="background-color:darksalmon; color: beige;">-20</button>
+                <button type="button" id="saleRatioDec1" style="background-color:darksalmon; color: beige;">-5</button>
+                <button type="button" id="saleRatioDec2" style="background-color:darksalmon; color: beige;">-1</button>
+                <br>
+                <button type="button" id="calcSumButton">お会計する</button>
+                <span style="font-size: 20%;">ボタンを左クリックするか、ページ内で右クリックすると請求金額がクリップボードにコピーされます</span>
+                <br>
+                <textarea id="shown" cols="64" rows="9"></textarea>
+            </div>
+
+            <div id="receipt">
+                <label style="font-size: 200%;">領収書</label>
+                <br>
+                <label>トマト</label>
+                <input type="number" placeholder="個数" id="tomato" min="0">
+                <button type="button" id="tomatoInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="tomatoInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="tomatoInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="tomatoDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="tomatoDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="tomatoDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>チーズ</label>
+                <input type="number" placeholder="個数" id="cheese" min="0">
+                <button type="button" id="cheeseInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="cheeseInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="cheeseInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="cheeseDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="cheeseDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="cheeseDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>レタス</label>
+                <input type="number" placeholder="個数" id="letus" min="0">
+                <button type="button" id="letusInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="letusInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="letusInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="letusDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="letusDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="letusDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>ソース</label>
+                <input type="number" placeholder="個数" id="sauce" min="0">
+                <button type="button" id="sauceInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="sauceInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="sauceInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="sauceDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="sauceDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="sauceDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>バンズ</label>
+                <input type="number" placeholder="個数" id="vans" min="0">
+                <button type="button" id="vansInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="vansInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="vansInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="vansDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="vansDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="vansDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>ケース大</label>
+                <input type="number" placeholder="個数" id="caseL" min="0">
+                <button type="button" id="caseLInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="caseLInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="caseLInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="caseLDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="caseLDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="caseLDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>ケース小</label>
+                <input type="number" placeholder="個数" id="caseS" min="0">
+                <button type="button" id="caseSInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="caseSInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="caseSInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="caseSDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="caseSDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="caseSDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>グラス大</label>
+                <input type="number" placeholder="個数" id="glassL" min="0">
+                <button type="button" id="glassLInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="glassLInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="glassLInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="glassLDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="glassLDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="glassLDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>グラス小</label>
+                <input type="number" placeholder="個数" id="glassS" min="0">
+                <button type="button" id="glassSInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="glassSInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="glassSInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="glassSDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="glassSDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="glassSDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>コーヒーグラス</label>
+                <input type="number" placeholder="個数" id="coffee" min="0">
+                <button type="button" id="coffeeInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="coffeeInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="coffeeInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="coffeeDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="coffeeDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="coffeeDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>冷凍肉</label>
+                <input type="number" placeholder="個数" id="meat" min="0">
+                <button type="button" id="meatInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="meatInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="meatInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="meatDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="meatDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="meatDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>冷凍リング</label>
+                <input type="number" placeholder="個数" id="ring" min="0">
+                <button type="button" id="ringInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="ringInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="ringInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="ringDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="ringDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="ringDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>冷凍ナゲット</label>
+                <input type="number" placeholder="個数" id="nuget" min="0">
+                <button type="button" id="nugetInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="nugetInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="nugetInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="nugetDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="nugetDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="nugetDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>ポテト小</label>
+                <input type="number" placeholder="個数" id="potatoS" min="0">
+                <button type="button" id="potatoSInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="potatoSInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="potatoSInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="potatoSDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="potatoSDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="potatoSDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>ポテト大</label>
+                <input type="number" placeholder="個数" id="potatoL" min="0">
+                <button type="button" id="potatoLInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="potatoLInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="potatoLInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="potatoLDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="potatoLDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="potatoLDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <label>マカロン</label>
+                <input type="number" placeholder="個数" id="macaron" min="0">
+                <button type="button" id="macaronInc0" style="background-color:cornflowerblue; color: beige;">+10</button>
+                <button type="button" id="macaronInc1" style="background-color:cornflowerblue; color: beige;">+100</button>
+                <button type="button" id="macaronInc2" style="background-color:cornflowerblue; color: beige;">+500</button>
+                <button type="button" id="macaronDec0" style="background-color:darksalmon; color: beige;">-500</button>
+                <button type="button" id="macaronDec1" style="background-color:darksalmon; color: beige;">-100</button>
+                <button type="button" id="macaronDec2" style="background-color:darksalmon; color: beige;">-10</button>
+
+                <br>
+                <textarea id="shown1" cols="64" rows="9"></textarea>
+            </div>
+        </div>
+        <script src="../src/mi/invoice.js"></script>
+        <script src="../src/mi/receipt.js"></script>
+    </body>
+    <footer>
+        <hr> 
+        <label>更新履歴</label>
+        <p>3/12</p>
+        <ul>
+            <li>領収書生成機能を追加。</li>
+            <li>ウィンドウの右側を右クリックすると領収書のテキストがコピーされるように。</li>
+        </ul>
+        <p>3/10</p>
+        <ul>
+            <li>ウィンドウの左側を右クリックすると請求金額がコピーされるように変更。</li>
+        </ul>
+        <p>3/6</p>
+        <ul>
+            <li>マイナスボタンを追加。</li>
+            <li>ボタンに色付け。</li>
+            <li>右クリックをすると請求金額がコピーされるように。</li>
+            <li>割引にボタンを追加。</li>
+        </ul>
+        <p>3/5</p>
+        <ul>
+            <li>バーガーアイコンをクリックするとページを更新(リセット)するように。</li>
+        </ul>
+        </footer>
+</html>
