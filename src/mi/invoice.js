@@ -1,6 +1,6 @@
 ﻿console.log('invoice.js');
 
-const invoiceNames = [
+const iNames = [
     [
         'ブリーダーバーガー',
         'ブリーダーバーガーセット',
@@ -21,11 +21,11 @@ const invoiceNames = [
     ]
 ];
 
-const invoiceTextArea = document.getElementById('shown');
+const iTextArea = document.getElementById('shown');
 
-const invoiceElems = Array.from(invoiceNames[1]).map(name => document.getElementById(name));
+const iElems = Array.from(iNames[1]).map(name => document.getElementById(name));
 
-const invoiceUnitPrices = [
+const iUnitPrices = [
     20000,  // breeder
     30000,  // breeder set
     35000,  // bicking
@@ -59,12 +59,12 @@ function copyToClipboard(value) {
     }
 }
 
-function issueInvoiceClicked(event) { 
+function issueI(event) { 
     if (event.pageX > (document.documentElement.clientWidth / 2)) {
         return;
     }
-    invoiceTextArea.value = '';
-    const flags = inputFlags(invoiceElems);
+    iTextArea.value = '';
+    const flags = inputFlags(iElems);
     if (allof(flags, false)) {
         alert('数値を入力してください。');
         return;
@@ -72,97 +72,49 @@ function issueInvoiceClicked(event) {
     var dstText = '';
     var subTotal = 0;
     for (let i = 0; i < flags.length; i++) {
-        if (flags[i] && invoiceElems[i].value > 0) {
-            const t = invoiceUnitPrices[i] * Number(invoiceElems[i].value);
+        if (flags[i] && iElems[i].value > 0) {
+            const t = iUnitPrices[i] * Number(iElems[i].value);
             subTotal += t;
-            dstText += `${invoiceNames[0][i]}: ${t.toLocaleString()}円(${Number(invoiceElems[i].value).toLocaleString()}個*${invoiceUnitPrices[i].toLocaleString()}円)\n`;
+            dstText += `${iNames[0][i]}: ${t.toLocaleString()}円(${Number(iElems[i].value).toLocaleString()}個*${iUnitPrices[i].toLocaleString()}円)\n`;
         }
     }
     const isSale = saleRatio.value != '' && saleRatio.value > 0;
     const red = subTotal / 100 * saleRatio.value;
     const total = isSale ? subTotal - red : subTotal;
-    invoiceTextArea.value = `合計${isSale ? `(割引額: ${red.toLocaleString()})円` : ''}: ${total.toLocaleString()}円\n\n${dstText}`;
+    iTextArea.value = `合計${isSale ? `(割引額: ${red.toLocaleString()})円` : ''}: ${total.toLocaleString()}円\n\n${dstText}`;
     copyToClipboard(total);
 };
 
-document.getElementById('calcSumButton').addEventListener('click', event => issueInvoiceClicked(event));
+document.getElementById('calcSumButton').addEventListener('click', event => issueI(event));
 
 // メニュー[n]のincAmounts[m]がクリックされたらelems[n]の数値にincAmounts[m]を追加する
 const suffixes = ['Inc', 'Dec'];
 const incAmounts = [1, 5, 20];
 const decAmounts = Array.from(incAmounts).reverse().map(n => -n);
-console.log(decAmounts);
-// TODO 多次元配列の初期化がわかればそっちでやる
-var invoiceButtons = [
-    [
-        [
-            document.getElementById(invoiceNames[1][0] + suffixes[0] + '0'), // [0][0][0]
-            document.getElementById(invoiceNames[1][1] + suffixes[0] + '0'),
-            document.getElementById(invoiceNames[1][2] + suffixes[0] + '0'),
-            document.getElementById(invoiceNames[1][3] + suffixes[0] + '0'),
-            document.getElementById(invoiceNames[1][4] + suffixes[0] + '0'),
-            document.getElementById(invoiceNames[1][5] + suffixes[0] + '0'),
-            document.getElementById(invoiceNames[1][6] + suffixes[0] + '0'),
-        ],
-        [
-            document.getElementById(invoiceNames[1][0] + suffixes[0] + '1'),
-            document.getElementById(invoiceNames[1][1] + suffixes[0] + '1'),
-            document.getElementById(invoiceNames[1][2] + suffixes[0] + '1'),
-            document.getElementById(invoiceNames[1][3] + suffixes[0] + '1'),
-            document.getElementById(invoiceNames[1][4] + suffixes[0] + '1'),
-            document.getElementById(invoiceNames[1][5] + suffixes[0] + '1'),
-            document.getElementById(invoiceNames[1][6] + suffixes[0] + '1'),
-        ],
-        [
-            document.getElementById(invoiceNames[1][0] + suffixes[0] + '2'),
-            document.getElementById(invoiceNames[1][1] + suffixes[0] + '2'),
-            document.getElementById(invoiceNames[1][2] + suffixes[0] + '2'),
-            document.getElementById(invoiceNames[1][3] + suffixes[0] + '2'),
-            document.getElementById(invoiceNames[1][4] + suffixes[0] + '2'),
-            document.getElementById(invoiceNames[1][5] + suffixes[0] + '2'),
-            document.getElementById(invoiceNames[1][6] + suffixes[0] + '2'),
-        ]
-    ],
-    [
-        [
-            document.getElementById(invoiceNames[1][0] + suffixes[1] + '0'),
-            document.getElementById(invoiceNames[1][1] + suffixes[1] + '0'),
-            document.getElementById(invoiceNames[1][2] + suffixes[1] + '0'),
-            document.getElementById(invoiceNames[1][3] + suffixes[1] + '0'),
-            document.getElementById(invoiceNames[1][4] + suffixes[1] + '0'),
-            document.getElementById(invoiceNames[1][5] + suffixes[1] + '0'),
-            document.getElementById(invoiceNames[1][6] + suffixes[1] + '0'),
-        ],
-        [
-            document.getElementById(invoiceNames[1][0] + suffixes[1] + '1'),
-            document.getElementById(invoiceNames[1][1] + suffixes[1] + '1'),
-            document.getElementById(invoiceNames[1][2] + suffixes[1] + '1'),
-            document.getElementById(invoiceNames[1][3] + suffixes[1] + '1'),
-            document.getElementById(invoiceNames[1][4] + suffixes[1] + '1'),
-            document.getElementById(invoiceNames[1][5] + suffixes[1] + '1'),
-            document.getElementById(invoiceNames[1][6] + suffixes[1] + '1'),
-        ],
-        [
-            document.getElementById(invoiceNames[1][0] + suffixes[1] + '2'),
-            document.getElementById(invoiceNames[1][1] + suffixes[1] + '2'),
-            document.getElementById(invoiceNames[1][2] + suffixes[1] + '2'),
-            document.getElementById(invoiceNames[1][3] + suffixes[1] + '2'),
-            document.getElementById(invoiceNames[1][4] + suffixes[1] + '2'),
-            document.getElementById(invoiceNames[1][5] + suffixes[1] + '2'),
-            document.getElementById(invoiceNames[1][6] + suffixes[1] + '2'),
-        ]
-    ]
-];
+// console.log(decAmounts);
+
+var iBtns = [];
+for (let i = 0; i < 2; i++) {
+    iBtns.push([]);
+    for (let j = 0; j < 3; j++) {
+        iBtns[i].push([]);
+        for (let k = 0; k < iNames[1].length; k++) {
+            iBtns[i][j].push(
+                document.getElementById(`${iNames[1][k]}${suffixes[i]}${j}`)
+            );
+        }
+    }
+}
 // console.log(invoiceButtons);
 
-for (let i = 0; i < invoiceButtons[0].length; i++) {
-    for (let k = 0; k < invoiceButtons[0][i].length; k++) {
-        invoiceButtons[0][i][k].addEventListener('click', () => {
-            invoiceElems[k].value = Number(invoiceElems[k].value) + incAmounts[i];
+for (let i = 0; i < iBtns[0].length; i++) {
+    for (let k = 0; k < iBtns[0][i].length; k++) {
+        iBtns[0][i][k].addEventListener('click', () => {
+            iElems[k].value = Number(iElems[k].value) + incAmounts[i];
         });
-        invoiceButtons[1][i][k].addEventListener('click', () => {
-            const value = Number(invoiceElems[k].value) + decAmounts[i];
-            invoiceElems[k].value = value < 0 ? 0 : value;
+        iBtns[1][i][k].addEventListener('click', () => {
+            const value = Number(iElems[k].value) + decAmounts[i];
+            iElems[k].value = value < 0 ? 0 : value;
         });
     }
 }
@@ -170,7 +122,7 @@ for (let i = 0; i < invoiceButtons[0].length; i++) {
 document.getElementById('reloadButton').addEventListener('click', () => location.reload());
 
 document.getElementById('main').addEventListener('contextmenu', event => {
-    issueInvoiceClicked(event);
+    issueI(event);
     event.preventDefault();
 });
 
