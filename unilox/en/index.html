@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilox - High Performance RNG for Unity</title>
+    <meta name="description" content="Ultra-fast, low-memory footprint random number generation library for Unity.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="slides-container">
+        <!-- Slide 1: Identity -->
+        <section id="slide1">
+            <div class="content-card">
+                <div class="badge-stack">
+                    <div class="tech-badge rust">
+                        <i class="fa-brands fa-rust"></i> Powered by Rust
+                        <span class="tooltip">
+                            <b>Why Rust?</b>
+                            A modern systems programming language focused on safety and performance.
+                            Unilox leverages Rust to achieve extreme execution speeds and stability that are difficult
+                            to reach with C# alone.
+                        </span>
+                    </div>
+                    <div class="tech-badge unity">
+                        <i class="fa-brands fa-unity"></i> Built for Unity
+                        <span class="tooltip">
+                            <b>Unity Optimization</b>
+                            Architected specifically for the Unity engine.
+                            Engineered to work seamlessly across all projects, taking game performance to the next
+                            level.
+                        </span>
+                    </div>
+                </div>
+                <div class="tagline"><i class="fas fa-bolt"></i> Next-Gen Unity Utility</div>
+                <h1>Unilox</h1>
+                <p>
+                    Unilox is an ultra-fast Random Number Generation (RNG) asset optimized for Unity game
+                    development.<br>
+                    The core is <strong><span class="rust-text">Rust</span>-powered</strong>, delivering memory safety
+                    and native-grade execution speed.
+                </p>
+                <p>
+                    Equipped with <strong>Powerful Batch Generation</strong>, completing RNG tasks for millions of
+                    entities in an instant.
+                </p>
+            </div>
+            <div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
+        </section>
+
+        <!-- Slide 2: Comparison -->
+        <section id="slide2">
+            <div class="content-card">
+                <div class="tagline"><i class="fas fa-chart-line"></i> Benchmarks</div>
+                <h2>Extreme Performance</h2>
+                <p>
+                    Unilox outperforms standard System.Random and UnityEngine.Random.
+                    Featuring optimized Xorshift and Philox algorithms with internal SIMD optimizations.
+                </p>
+                <div class="chart-container">
+                    <!-- Unilox Bar -->
+                    <div class="chart-row highlight">
+                        <div class="bar-label">
+                            <span>Unilox (Philox32)</span>
+                            <span class="stat-value-inline">62.4943 ms</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill highlight" style="width: 7.0%;"></div>
+                        </div>
+                    </div>
+                    <!-- UnityEngine.Random Bar -->
+                    <div class="chart-row">
+                        <div class="bar-label">
+                            <span>UnityEngine.Random</span>
+                            <span class="stat-value-inline">723.6959 ms</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="width: 81.7%;"></div>
+                        </div>
+                    </div>
+                    <!-- System.Random Bar -->
+                    <div class="chart-row">
+                        <div class="bar-label">
+                            <span>System.Random</span>
+                            <span class="stat-value-inline">885.5966 ms</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 1.5rem; font-size: 0.9rem;">* Average time for 10 trials of 100 million
+                    generations. Native environment comparison.</p>
+            </div>
+            <div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
+        </section>
+
+        <!-- Slide 3: Usage -->
+        <section id="slide3">
+            <div class="content-card">
+                <div class="tagline"><i class="fas fa-code"></i> Seamless Integration</div>
+                <h2>Intuitive API</h2>
+                <p>
+                    Simple, thread-safe API design allows for integration into existing projects in minutes.
+                </p>
+                <div class="code-block">
+                    <pre><code><span class="comment">// Simple Initialization</span>
+<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="class">Philox32</span>(seed);
+
+<span class="comment">// Get Single Value (0.0 ~ 1.0)</span>
+<span class="keyword">float</span> val = rng.<span class="method">Value</span>();
+
+<span class="comment">// Range Selection [min, max] / [min, max)</span>
+<span class="keyword">float</span> f = rng.<span class="method">Randfloat</span>(0f, 100f);
+<span class="keyword">int</span> i = rng.<span class="method">Randint</span>(0, 10);
+
+<span class="comment">// High-speed Batch Generation (via ReadOnlySpan)</span>
+<span class="keyword">var</span> batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);</code></pre>
+                </div>
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <a href="docs.html"
+                        style="text-decoration: none; padding: 10px 20px; border: 1px solid var(--primary); border-radius: 8px; color: var(--primary); font-weight: 600;">
+                        <i class="fas fa-book"></i> Documentation</a>
+                    <div
+                        style="padding: 10px 20px; background: var(--primary); border-radius: 8px; color: var(--bg-dark); font-weight: 600;">
+                        <i class="fas fa-download"></i> Get Started
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
