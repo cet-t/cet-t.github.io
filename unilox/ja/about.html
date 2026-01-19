@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilox - High Performance RNG for Unity</title>
+    <meta name="description" content="Unity向け超高速・低メモリフットプリントな乱数生成ライブラリ Unilox の紹介スライド">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="slides-container">
+        <!-- Slide 1: Identity -->
+        <section id="slide1">
+            <div class="content-card">
+                <div class="badge-stack">
+                    <div class="tech-badge rust">
+                        <i class="fa-brands fa-rust"></i> Powered by Rust
+                        <span class="tooltip">
+                            <b>Why Rust?</b>
+                            高いメモリ安全性と並列処理性能を誇るモダンなシステムプログラミング言語。
+                            Uniloxでは、このRustの力を最大限に活かすことで、C#だけでは到達困難な極限の実行速度と安定性を実現しています。
+                        </span>
+                    </div>
+                    <div class="tech-badge unity">
+                        <i class="fa-brands fa-unity"></i> Built for Unity
+                        <span class="tooltip">
+                            <b>Unity Optimization</b>
+                            Unityエンジンのアーキテクチャに最適化。
+                            あらゆるプロジェクトでシームレスに動作し、ゲームのパフォーマンスを次のレベルへ引き上げます。
+                        </span>
+                    </div>
+                </div>
+                <div class="tagline"><i class="fas fa-bolt"></i> Next-Gen Unity Utility</div>
+                <h1>Unilox</h1>
+                <p>
+                    Uniloxは、Unityでのゲーム開発に最適化された超高速乱数生成（RNG）アセットです。<br>
+                    核心部は<strong><span class="rust-text">Rust</span>で実装</strong>されており、メモリ安全性とネイティブ級の実行速度を両立しています。
+                </p>
+                <p>
+                    <strong>強力なバッチ生成機能</strong>を備え、数百万の個体に対する乱数生成を瞬時に完了させます。
+                </p>
+            </div>
+            <div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
+        </section>
+
+        <!-- Slide 2: Comparison -->
+        <section id="slide2">
+            <div class="content-card">
+                <div class="tagline"><i class="fas fa-chart-line"></i> Benchmarks</div>
+                <h2>圧倒的な実行速度</h2>
+                <p>
+                    Uniloxは、標準の System.Random や UnityEngine.Random を凌駕するパフォーマンスを提供します。
+                    内部に Xorshift や Philox アルゴリズムを搭載し、SIMD最適化が施されています。
+                </p>
+                <div class="chart-container">
+                    <!-- Unilox Bar -->
+                    <div class="chart-row highlight">
+                        <div class="bar-label">
+                            <span>Unilox (Philox32)</span>
+                            <span class="stat-value-inline">62.4943 ms</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill highlight" style="width: 7.0%;"></div>
+                        </div>
+                    </div>
+                    <!-- UnityEngine.Random Bar -->
+                    <div class="chart-row">
+                        <div class="bar-label">
+                            <span>UnityEngine.Random</span>
+                            <span class="stat-value-inline">723.6959 ms</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="width: 81.7%;"></div>
+                        </div>
+                    </div>
+                    <!-- System.Random Bar -->
+                    <div class="chart-row">
+                        <div class="bar-label">
+                            <span>System.Random</span>
+                            <span class="stat-value-inline">885.5966 ms</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 1.5rem; font-size: 0.9rem;">※ 1億個の生成を10回試行した際の平均時間。ネイティブ環境での比較。</p>
+            </div>
+            <div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
+        </section>
+
+        <!-- Slide 3: Usage -->
+        <section id="slide3">
+            <div class="content-card">
+                <div class="tagline"><i class="fas fa-code"></i> Seamless Integration</div>
+                <h2>直感的な使用例</h2>
+                <p>
+                    シンプルかつスレッドセーフなAPI設計により、既存のプロジェクトに数分で組み込むことが可能です。
+                </p>
+                <div class="code-block">
+                    <pre><code><span class="comment">// 非常にシンプルな初期化</span>
+<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="class">Philox32</span>(seed);
+
+<span class="comment">// 単一値の取得 (0.0 ~ 1.0)</span>
+<span class="keyword">float</span> val = rng.<span class="method">Value</span>();
+
+<span class="comment">// 範囲指定の取得 [min, max] / [min, max)</span>
+<span class="keyword">float</span> f = rng.<span class="method">Randfloat</span>(0f, 100f);
+<span class="keyword">int</span> i = rng.<span class="method">Randint</span>(0, 10);
+
+<span class="comment">// 強力な超高速バッチ生成 (ReadOnlySpanでの取得)</span>
+<span class="keyword">var</span> batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);</code></pre>
+                </div>
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <a href="index.html"
+                        style="text-decoration: none; padding: 10px 20px; border: 1px solid var(--primary); border-radius: 8px; color: var(--primary); font-weight: 600;">
+                        <i class="fas fa-book"></i> Documentation</a>
+                    <div
+                        style="padding: 10px 20px; background: var(--primary); border-radius: 8px; color: var(--bg-dark); font-weight: 600;">
+                        <i class="fas fa-download"></i> Get Started
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
