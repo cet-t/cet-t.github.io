@@ -1,369 +1,372 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap");
 
 :root {
-    --primary: #00f2ff;
-    --secondary: #0066ff;
-    --bg-dark: #050a10;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --text-main: #e0e6ed;
-    --text-dim: #94a3b8;
-    --rust-orange: #f46623;
-    --unity-white: #ffffff;
+  --primary: #f46623; /* Rust Orange */
+  --secondary: #d2991d; /* Docs Gold */
+  --bg-dark: #262626; /* Docs BG */
+  --card-bg: #353535; /* Docs Sidebar Gray */
+  --glass-border: #444;
+  --text-main: #ddd;
+  --text-dim: #999;
+  --rust-orange: #f46623;
+  --unity-white: #ffffff;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Outfit', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    overflow: hidden;
-    height: 100vh;
+  font-family: "Fira Sans", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  overflow: hidden;
+  height: 100vh;
 }
 
 .slides-container {
-    height: 100vh;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 section {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    /* Stack card and hint */
-    justify-content: center;
-    align-items: center;
-    scroll-snap-align: start;
-    position: relative;
-    padding: 2rem;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Stack card and hint */
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  position: relative;
+  padding: 2rem;
 }
 
 /* Background Effects */
 section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.3;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.3;
 }
 
 #slide1 {
-    background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.05) 0%, transparent 70%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 242, 255, 0.05) 0%,
+    transparent 70%
+  );
 }
 
 #bg-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .content-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 3rem;
-    max-width: 900px;
-    width: 100%;
-    animation: fadeInUp 1s ease-out;
-    position: relative;
-    /* For badge positioning */
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 3rem;
+  max-width: 900px;
+  width: 100%;
+  animation: fadeInUp 1s ease-out;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .badge-stack {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: flex-end;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-end;
 }
 
 .tech-badge {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-dim);
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    backdrop-filter: blur(4px);
-    width: 180px;
-    justify-content: flex-start;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(4px);
+  width: 180px;
+  justify-content: flex-start;
 }
 
 .tech-badge i {
-    width: 18px;
-    text-align: center;
+  width: 18px;
+  text-align: center;
 }
 
 .tech-badge.rust:hover {
-    border-color: var(--rust-orange);
-    color: var(--rust-orange);
-    box-shadow: 0 0 20px rgba(244, 102, 35, 0.4);
-    background: rgba(244, 102, 35, 0.08);
-    transform: translateX(-5px);
-    cursor: pointer;
+  border-color: var(--rust-orange);
+  color: var(--rust-orange);
+  box-shadow: 0 0 20px rgba(244, 102, 35, 0.4);
+  background: rgba(244, 102, 35, 0.08);
+  transform: translateX(-5px);
+  cursor: pointer;
 }
 
 .tech-badge.unity:hover {
-    border-color: var(--unity-white);
-    color: var(--unity-white);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateX(-5px);
-    cursor: pointer;
+  border-color: var(--unity-white);
+  color: var(--unity-white);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(-5px);
+  cursor: pointer;
 }
 
 /* Tooltip styles base */
 .tech-badge .tooltip {
-    visibility: hidden;
-    width: 280px;
-    background: rgba(5, 10, 16, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    color: var(--text-main);
-    text-align: left;
-    border-radius: 12px;
-    padding: 1rem;
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    right: 110%;
-    /* Show to the left of the badge stack */
-    opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
-    transform: translateX(10px);
-    pointer-events: none;
-    font-size: 0.85rem;
-    font-weight: 400;
-    line-height: 1.5;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  width: 280px;
+  background: #2b2b2b;
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  text-align: left;
+  border-radius: 12px;
+  padding: 1rem;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 110%;
+  /* Show to the left of the badge stack */
+  opacity: 0;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+  transform: translateX(10px);
+  pointer-events: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.5;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 .tech-badge .tooltip b {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
 
 /* Variant specific tooltip colors */
 .tech-badge.rust:hover .tooltip {
-    border-color: var(--rust-orange);
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(0);
+  border-color: var(--rust-orange);
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .tech-badge.rust .tooltip b {
-    color: var(--rust-orange);
+  color: var(--rust-orange);
 }
 
 .tech-badge.unity:hover .tooltip {
-    border-color: var(--unity-white);
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(0);
+  border-color: var(--unity-white);
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .tech-badge.unity .tooltip b {
-    color: var(--unity-white);
+  color: var(--unity-white);
 }
 
 /* Rust specific highlights */
 .rust-text {
-    color: var(--rust-orange);
-    font-weight: 700;
+  color: var(--rust-orange);
+  font-weight: 700;
 }
 
 /* Rust specific highlights */
 .rust-text {
-    color: var(--rust-orange);
-    font-weight: 700;
+  color: var(--rust-orange);
+  font-weight: 700;
 }
 
 h1 {
-    font-size: 5rem;
-    font-weight: 800;
-    background: linear-gradient(to right, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 1rem;
-    letter-spacing: -2px;
+  font-family: "Source Serif 4", serif;
+  font-size: 5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
 }
 
 .tagline {
-    font-size: 1.5rem;
-    color: var(--primary);
-    margin-bottom: 2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 4px;
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
 }
 
 p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: var(--text-dim);
-    margin-bottom: 2rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
 }
 
 /* Bar Chart Styles */
 .chart-container {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .chart-row {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .bar-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
-    color: var(--text-dim);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--text-dim);
 }
 
 .bar-wrapper {
-    width: 100%;
-    height: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 6px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--glass-border);
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--glass-border);
 }
 
 .bar-fill {
-    height: 100%;
-    background: var(--text-dim);
-    border-radius: 6px;
-    transition: width 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-    width: 0;
-    /* Animated by JS or Intersection Observer */
+  height: 100%;
+  background: var(--text-dim);
+  border-radius: 6px;
+  transition: width 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  width: 0;
+  /* Animated by JS or Intersection Observer */
 }
 
 .bar-fill.highlight {
-    background: linear-gradient(to right, var(--primary), var(--secondary));
-    box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
 }
 
 .stat-value-inline {
-    color: var(--text-main);
-    font-weight: 600;
+  color: var(--text-main);
+  font-weight: 600;
 }
 
 .highlight .stat-value-inline {
-    color: var(--primary);
+  color: var(--primary);
 }
 
 /* Code Block Styles */
 pre {
-    background: #0d1117;
-    padding: 1.5rem;
-    border-radius: 12px;
-    overflow-x: auto;
-    border: 1px solid var(--glass-border);
-    margin-top: 1rem;
+  background: #0d1117;
+  padding: 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  border: 1px solid var(--glass-border);
+  margin-top: 1rem;
 }
 
 code {
-    font-family: 'Consolas', monospace;
-    color: #c9d1d9;
+  font-family: "Consolas", monospace;
+  color: #c9d1d9;
 }
 
 .keyword {
-    color: #ff7b72;
+  color: #ff7b72;
 }
 
 .class {
-    color: #d2a8ff;
+  color: #d2a8ff;
 }
 
 .method {
-    color: #d2a8ff;
+  color: #d2a8ff;
 }
 
 .comment {
-    color: #8b949e;
+  color: #8b949e;
 }
 
 /* Animations */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .scroll-hint {
-    margin-top: 3rem;
-    /* Distance from card */
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    animation: bounce 2s infinite, fadeIn 1s ease-out 0.5s both;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  margin-top: 3rem;
+  /* Distance from card */
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  animation:
+    bounce 2s infinite,
+    fadeIn 1s ease-out 0.5s both;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translate(-50%, 0);
+  }
 
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translate(-50%, 0);
-    }
+  40% {
+    transform: translate(-50%, -10px);
+  }
 
-    40% {
-        transform: translate(-50%, -10px);
-    }
-
-    60% {
-        transform: translate(-50%, -5px);
-    }
+  60% {
+    transform: translate(-50%, -5px);
+  }
 }

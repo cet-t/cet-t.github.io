@@ -1,90 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Unilox - High Performance RNG for Unity</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            background-color: #050a10;
-            color: #e0e6ed;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
+      :root {
+        --docs-bg: #262626;
+        --docs-orange: #f46623;
+        --docs-text: #ddd;
+        --docs-text-dim: #999;
+      }
 
-        .loader {
-            text-align: center;
-        }
+      body {
+        background-color: var(--docs-bg);
+        color: var(--docs-text);
+        font-family: "Fira Sans", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+      }
 
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(0, 242, 255, 0.1);
-            border-top: 3px solid #00f2ff;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            animation: spin 1s linear infinite;
-        }
+      .loader {
+        text-align: center;
+        max-width: 400px;
+        padding: 40px;
+      }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #353535;
+        border-top: 3px solid var(--docs-orange);
+        border-radius: 50%;
+        margin: 0 auto 25px;
+        animation: spin 0.8s linear infinite;
+      }
 
-            100% {
-                transform: rotate(360deg);
-            }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
 
-        a {
-            color: #00f2ff;
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: 600;
-        }
+      h1 {
+        font-family: "Source Serif 4", serif;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #fff;
+      }
 
-        p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
+      p {
+        color: var(--docs-text-dim);
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+      }
+
+      .lang-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        border-top: 1px solid #444;
+        padding-top: 20px;
+      }
+
+      a {
+        color: var(--docs-orange);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: color 0.2s;
+      }
+
+      a:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
     </style>
     <script>
-        (function () {
-            // Get browser language
-            const lang = navigator.language || navigator.userLanguage;
+      (function () {
+        const lang = navigator.language || navigator.userLanguage;
+        const jaPath = "./ja/index.html";
+        const enPath = "./en/index.html";
 
-            // Define target paths
-            const jaPath = './ja/index.html';
-            const enPath = './en/index.html';
-
-            // Redirect based on language preset
-            setTimeout(() => {
-                if (lang.startsWith('ja')) {
-                    window.location.href = jaPath;
-                } else {
-                    window.location.href = enPath;
-                }
-            }, 500); // 0.5s delay for visual feedback
-        })();
+        setTimeout(() => {
+          if (lang.startsWith("ja")) {
+            window.location.href = jaPath;
+          } else {
+            window.location.href = enPath;
+          }
+        }, 600);
+      })();
     </script>
-</head>
-
-<body>
+  </head>
+  <body>
     <div class="loader">
-        <div class="spinner"></div>
-        <p>Redirecting to your language...</p>
-        <div style="margin-top: 20px;">
-            <a href="./ja/index.html">日本語</a>
-            <span style="color: #334155;">|</span>
-            <a href="./en/index.html">English</a>
-        </div>
+      <div class="spinner"></div>
+      <h1>Redirecting to Docs</h1>
+      <p>Loading the high-performance RNG world...</p>
+      <div class="lang-links">
+        <a href="./ja/index.html">日本語</a>
+        <a href="./en/index.html">English</a>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

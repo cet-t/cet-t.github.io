@@ -1,274 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Unilox Documentation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap"
-        rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="https://github.com/cet-t.png" />
     <style>
-        :root {
-            --primary: #00f2ff;
-            --secondary: #0066ff;
-            --rust-orange: #f46623;
-            --bg-dark: #050a10;
-            --sidebar-bg: #0a1118;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
-            --text-main: #e0e6ed;
-            --text-dim: #94a3b8;
-        }
+      :root {
+        --docs-bg: #262626;
+        --docs-sidebar: #353535;
+        --docs-orange: #f46623;
+        --docs-text: #ddd;
+        --docs-text-dim: #999;
+        --docs-border: #444;
+        --docs-link: #d2991d;
+        --docs-code-bg: #f5f5f5;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            display: flex;
-            min-height: 100vh;
-        }
+      body {
+        background-color: var(--docs-bg);
+        color: var(--docs-text);
+        font-family: "Fira Sans", sans-serif;
+        display: flex;
+        min-height: 100vh;
+        line-height: 1.6;
+      }
 
-        /* Sidebar */
+      /* Sidebar */
+      .sidebar {
+        width: 280px;
+        background: var(--docs-sidebar);
+        border-right: 1px solid var(--docs-border);
+        height: 100vh;
+        position: fixed;
+        padding: 1.5rem;
+        overflow-y: auto;
+      }
+
+      .logo-link {
+        text-decoration: none;
+        display: block;
+        margin-bottom: 2.5rem;
+        border-bottom: 1px solid var(--docs-border);
+        padding-bottom: 1rem;
+      }
+
+      .logo {
+        font-family: "Source Serif 4", serif;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--docs-orange);
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .logo-link:hover {
+        opacity: 0.8;
+      }
+
+      .nav-group {
+        margin-bottom: 2rem;
+      }
+
+      .nav-title {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--docs-text-dim);
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+      }
+
+      .nav-link {
+        display: block;
+        color: var(--docs-link);
+        text-decoration: none;
+        padding: 0.3rem 0;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+      }
+
+      .nav-link:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      /* Main Content */
+      .content {
+        margin-left: 280px;
+        flex: 1;
+        padding: 3rem 4rem;
+        max-width: 1000px;
+      }
+
+      h1 {
+        font-family: "Source Serif 4", serif;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        color: #fff;
+        border-bottom: 1px solid var(--docs-border);
+        padding-bottom: 10px;
+      }
+
+      h2 {
+        font-family: "Source Serif 4", serif;
+        font-size: 1.8rem;
+        margin-top: 3.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--docs-border);
+        padding-bottom: 0.3rem;
+        color: #fff;
+      }
+
+      p {
+        margin-bottom: 1.2rem;
+        color: var(--docs-text);
+      }
+
+      .method-card {
+        background: #2b2b2b;
+        border: 1px solid var(--docs-border);
+        border-left: 4px solid var(--docs-orange);
+        border-radius: 4px;
+        padding: 1.2rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .method-signature {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--docs-link);
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        font-size: 1.1rem;
+      }
+
+      pre {
+        background: #0d1117;
+        padding: 1.2rem;
+        border-radius: 4px;
+        overflow-x: auto;
+        border: 1px solid var(--docs-border);
+        margin: 1.2rem 0;
+      }
+
+      code {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.85rem;
+      }
+
+      .rust-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(244, 102, 35, 0.1);
+        color: var(--docs-orange);
+        padding: 0.1rem 0.5rem;
+        border-radius: 3px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border: 1px solid rgba(244, 102, 35, 0.2);
+      }
+
+      .keyword {
+        color: #ff7b72;
+      }
+      .type {
+        color: #d2a8ff;
+      }
+      .method {
+        color: #d2a8ff;
+      }
+      .comment {
+        color: #8b949e;
+      }
+
+      @media (max-width: 900px) {
         .sidebar {
-            width: 300px;
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--border);
-            height: 100vh;
-            position: fixed;
-            padding: 2rem;
-            overflow-y: auto;
+          display: none;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-link {
-            text-decoration: none;
-            display: block;
-            margin-bottom: 3rem;
-            transition: opacity 0.3s;
-        }
-
-        .logo-link:hover .logo {
-            animation: lightningGlow 2s infinite ease-in-out;
-            filter: drop-shadow(0 0 15px var(--primary));
-        }
-
-        @keyframes lightningGlow {
-
-            0%,
-            100% {
-                filter: drop-shadow(0 0 8px var(--primary)) brightness(1);
-            }
-
-            50% {
-                filter: drop-shadow(0 0 25px var(--primary)) brightness(1.3);
-            }
-        }
-
-        .nav-group {
-            margin-bottom: 2rem;
-        }
-
-        .nav-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-dim);
-            margin-bottom: 1rem;
-        }
-
-        .nav-link {
-            display: block;
-            color: var(--text-main);
-            text-decoration: none;
-            padding: 0.5rem 0;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        /* Main Content */
         .content {
-            margin-left: 300px;
-            flex: 1;
-            padding: 4rem 6rem;
-            max-width: 1200px;
+          margin-left: 0;
+          padding: 2rem;
         }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            font-weight: 800;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-top: 4rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        p {
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: var(--text-dim);
-        }
-
-        .method-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .method-signature {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        pre {
-            background: #0d1117;
-            padding: 1.5rem;
-            border-radius: 12px;
-            overflow-x: auto;
-            border: 1px solid var(--border);
-            margin: 1.5rem 0;
-        }
-
-        code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-        }
-
-        .rust-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(244, 102, 35, 0.1);
-            color: var(--rust-orange);
-            padding: 0.2rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid rgba(244, 102, 35, 0.2);
-        }
-
-        .keyword {
-            color: #ff7b72;
-        }
-
-        .type {
-            color: #d2a8ff;
-        }
-
-        .method {
-            color: #d2a8ff;
-        }
-
-        .comment {
-            color: #8b949e;
-        }
-
-        .string {
-            color: #a5d6ff;
-        }
-
-        @media (max-width: 1000px) {
-            .sidebar {
-                display: none;
-            }
-
-            .content {
-                margin-left: 0;
-                padding: 2rem;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <aside class="sidebar">
-        <a href="about.html" class="logo-link">
-            <div class="logo">
-                <i class="fas fa-bolt"></i> Unilox
-            </div>
-        </a>
-        <nav>
-            <div class="nav-group">
-                <div class="nav-title">はじめに</div>
-                <a href="#overview" class="nav-link">概要</a>
-                <a href="#install" class="nav-link">インストール</a>
-            </div>
-            <div class="nav-group">
-                <div class="nav-title">使い方</div>
-                <a href="#basics" class="nav-link">基本操作</a>
-                <a href="#batch" class="nav-link">一括生成 (Batch)</a>
-            </div>
-            <div class="nav-group">
-                <div class="nav-title">アルゴリズム</div>
-                <a href="#algorithms" class="nav-link">利用可能なエンジン</a>
-            </div>
-            <div class="nav-group">
-                <div class="nav-title">API リファレンス</div>
-                <a href="#api-rng32" class="nav-link">IRng32</a>
-                <a href="#api-rng64" class="nav-link">IRng64</a>
-            </div>
-        </nav>
+      <a href="about.html" class="logo-link">
+        <div class="logo"><i class="fas fa-bolt"></i> Unilox</div>
+      </a>
+      <nav>
+        <div class="nav-group">
+          <div class="nav-title">はじめに</div>
+          <a href="#overview" class="nav-link">概要</a>
+          <a href="#install" class="nav-link">インストール</a>
+        </div>
+        <div class="nav-group">
+          <div class="nav-title">使い方</div>
+          <a href="#basics" class="nav-link">基本操作</a>
+          <a href="#batch" class="nav-link">一括生成 (Batch)</a>
+        </div>
+        <div class="nav-group">
+          <div class="nav-title">アルゴリズム</div>
+          <a href="#algorithms" class="nav-link">利用可能なエンジン</a>
+        </div>
+        <div class="nav-group">
+          <div class="nav-title">API リファレンス</div>
+          <a href="#api-rng32" class="nav-link">IRng32</a>
+          <a href="#api-rng64" class="nav-link">IRng64</a>
+        </div>
+      </nav>
     </aside>
 
     <main class="content">
-        <section id="overview">
-            <h1>ドキュメント</h1>
-            <p>
-                Uniloxは、Unityでのゲーム開発に最適化された超高速乱数生成（RNG）ライブラリです。
-                <span class="rust-badge"><i class="fa-brands fa-rust"></i> Powered by Rust</span>
-            </p>
-            <p>
-                標準の <code>UnityEngine.Random</code> や <code>System.Random</code> では到達できないパフォーマンスを提供し、
-                特に大量の個体を扱うシミュレーションや、複雑なプロシージャルコンテンツ生成においてその真価を発揮します。
-            </p>
-        </section>
+      <section id="overview">
+        <h1>Crate unilox</h1>
+        <p>
+          Uniloxは、Unityでのゲーム開発に最適化された超高速乱数生成（RNG）ライブラリです。
+          <span class="rust-badge"
+            ><i class="fa-brands fa-rust"></i> Powered by Rust</span
+          >
+        </p>
+        <p>
+          標準の <code>UnityEngine.Random</code> や
+          <code>System.Random</code> では到達できないパフォーマンスを提供し、
+          特に大量の個体を扱うシミュレーションや、複雑なプロシージャルコンテンツ生成においてその真価を発揮します。
+        </p>
+      </section>
 
-        <section id="install">
-            <h2>インストール</h2>
-            <p>
-                Unity Package Manager (UPM) から導入するか、提供される <code>.unitypackage</code> をインポートしてください。
-                核心部はネイティブライブラリ（.dll / .so / .bundle）として同梱されており、各プラットフォームで最適なコードが実行されます。
-            </p>
-        </section>
+      <section id="install">
+        <h2>インストール</h2>
+        <p>
+          Unity Package Manager (UPM) から導入するか、提供される
+          <code>.unitypackage</code> をインポートしてください。
+          核心部はネイティブライブラリ（.dll / .so /
+          .bundle）として同梱されており、各プラットフォームで最適なコードが実行されます。
+        </p>
+      </section>
 
-        <section id="basics">
-            <h2>基本操作</h2>
-            <p>
-                すべてのRNGクラスは <code>IDisposable</code> を継承しています。
-                ネイティブメモリの確実な解放のため、<code>using</code> ステートメントの利用を推奨します。
-            </p>
-            <pre><code><span class="keyword">using</span> <span class="type">var</span> rng = <span class="keyword">new</span> <span class="type">Philox32</span>(seed1, seed2);
+      <section id="basics">
+        <h2>基本操作</h2>
+        <p>
+          すべてのRNGクラスは <code>IDisposable</code> を継承しています。
+          ネイティブメモリの確実な解放のため、<code>using</code>
+          ステートメントの利用を推奨します。
+        </p>
+        <pre><code><span class="keyword">using</span> <span class="type">var</span> rng = <span class="keyword">new</span> <span class="type">Philox32</span>(seed1, seed2);
 
 <span class="comment">// 0.0 ~ 1.0 の浮動小数点を取得</span>
 <span class="type">float</span> val = rng.<span class="method">Value</span>();
@@ -278,81 +273,102 @@
 
 <span class="comment">// 範囲指定 (float) [min, max]</span>
 <span class="type">float</span> height = rng.<span class="method">Randfloat</span>(0.0f, 10.0f);</code></pre>
-        </section>
+      </section>
 
-        <section id="batch">
-            <h2>一括生成 (Batch Generation)</h2>
-            <p>
-                Uniloxの最大の特徴は、一度の呼び出しで複数の乱数を生成する一括生成機能です。
-                マネージド・ネイティブ間の呼び出しオーバーヘッドを最小化し、極めて高速に動作します。
-                結果は <code>ReadOnlySpan&lt;T&gt;</code> として返されるため、コピーなしで効率的にアクセス可能です。
-            </p>
-            <pre><code><span class="comment">// 1000個の乱数を一括生成</span>
+      <section id="batch">
+        <h2>一括生成 (Batch Generation)</h2>
+        <p>
+          Uniloxの最大の特徴は、一度の呼び出しで複数の乱数を生成する一括生成機能です。
+          マネージド・ネイティブ間の呼び出しオーバーヘッドを最小化し、極めて高速に動作します。
+          結果は
+          <code>ReadOnlySpan&lt;T&gt;</code>
+          として返されるため、コピーなしで効率的にアクセス可能です。
+        </p>
+        <pre><code><span class="comment">// 1000個の乱数を一括生成</span>
 <span class="type">var</span> batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);
 
 <span class="keyword">foreach</span> (<span class="type">var</span> value <span class="keyword">in</span> batch)
 {
     <span class="comment">// 処理...</span>
 }</code></pre>
-        </section>
+      </section>
 
-        <section id="algorithms">
-            <h2>利用可能なアルゴリズム</h2>
-            <p>用途に応じて最適なアルゴリズムを選択できます。</p>
+      <section id="algorithms">
+        <h2>利用可能なアルゴリズム</h2>
+        <p>用途に応じて最適なアルゴリズムを選択できます。</p>
 
-            <div class="method-card">
-                <div class="method-signature">Philox32 / Philox64</div>
-                <p>カウンタベースのRNG。並列処理に極めて強く、GPUやマルチスレッド環境での再現性に優れます。</p>
-            </div>
+        <div class="method-card">
+          <div class="method-signature">Philox32 / Philox64</div>
+          <p>
+            カウンタベースのRNG。並列処理に極めて強く、GPUやマルチスレッド環境での再現性に優れます。
+          </p>
+        </div>
 
-            <div class="method-card">
-                <div class="method-signature">Xorshift32 / Xorshift64 / Xorshift128</div>
-                <p>非常に軽量なアルゴリズム。メモリ消費が極めて少なく、爆速で動作します。</p>
-            </div>
+        <div class="method-card">
+          <div class="method-signature">
+            Xorshift32 / Xorshift64 / Xorshift128
+          </div>
+          <p>
+            非常に軽量なアルゴリズム。メモリ消費が極めて少なく、爆速で動作します。
+          </p>
+        </div>
 
-            <div class="method-card">
-                <div class="method-signature">Mt19937 / Mt1993764</div>
-                <p>伝統的なMersenne Twister。周期が非常に長く、統計的性質に優れます。</p>
-            </div>
+        <div class="method-card">
+          <div class="method-signature">Mt19937 / Mt1993764</div>
+          <p>
+            伝統的なMersenne Twister。周期が非常に長く、統計的性質に優れます。
+          </p>
+        </div>
 
-            <div class="method-card">
-                <div class="method-signature">Pcg32</div>
-                <p>予測困難性と速度のバランスに優れたモダンなアルゴリズムです。</p>
-            </div>
-        </section>
+        <div class="method-card">
+          <div class="method-signature">Pcg32</div>
+          <p>予測困難性と速度のバランスに優れたモダンなアルゴリズムです。</p>
+        </div>
+      </section>
 
-        <section id="api-rng32">
-            <h2>IRng32 リファレンス</h2>
-            <div class="method-card">
-                <div class="method-signature">ReadOnlySpan&lt;uint&gt; NextU32s(int count)</div>
-                <p>指定した個数の 32bit 無符号整数を生成します。</p>
-            </div>
-            <div class="method-card">
-                <div class="method-signature">ReadOnlySpan&lt;float&gt; NextF32s(int count)</div>
-                <p>指定した個数の 0.0 ~ 1.0 の浮動小数点を生成します。</p>
-            </div>
-            <div class="method-card">
-                <div class="method-signature">ReadOnlySpan&lt;int&gt; Randints(int count, int min, int max)</div>
-                <p>指定した範囲 [min, max] の整数を一括生成します。</p>
-            </div>
-        </section>
+      <section id="api-rng32">
+        <h2>IRng32 リファレンス</h2>
+        <div class="method-card">
+          <div class="method-signature">
+            ReadOnlySpan&lt;uint&gt; NextU32s(int count)
+          </div>
+          <p>指定した個数の 32bit 無符号整数を生成します。</p>
+        </div>
+        <div class="method-card">
+          <div class="method-signature">
+            ReadOnlySpan&lt;float&gt; NextF32s(int count)
+          </div>
+          <p>指定した個数の 0.0 ~ 1.0 の浮動小数点を生成します。</p>
+        </div>
+        <div class="method-card">
+          <div class="method-signature">
+            ReadOnlySpan&lt;int&gt; Randints(int count, int min, int max)
+          </div>
+          <p>指定した範囲 [min, max] の整数を一括生成します。</p>
+        </div>
+      </section>
 
-        <section id="api-rng64">
-            <h2>IRng64 リファレンス</h2>
-            <div class="method-card">
-                <div class="method-signature">ReadOnlySpan&lt;ulong&gt; NextU64s(int count)</div>
-                <p>指定した個数の 64bit 無符号整数を生成します。</p>
-            </div>
-            <div class="method-card">
-                <div class="method-signature">ReadOnlySpan&lt;double&gt; NextF64s(int count)</div>
-                <p>指定した個数の 0.0 ~ 1.0 の倍精度浮動小数点を生成します。</p>
-            </div>
-            <div class="method-card">
-                <div class="method-signature">ReadOnlySpan&lt;long&gt; Randints(int count, long min, long max)</div>
-                <p>指定した範囲 [min, max] の 64bit 整数を一括生成します。</p>
-            </div>
-        </section>
+      <section id="api-rng64">
+        <h2>IRng64 リファレンス</h2>
+        <div class="method-card">
+          <div class="method-signature">
+            ReadOnlySpan&lt;ulong&gt; NextU64s(int count)
+          </div>
+          <p>指定した個数の 64bit 無符号整数を生成します。</p>
+        </div>
+        <div class="method-card">
+          <div class="method-signature">
+            ReadOnlySpan&lt;double&gt; NextF64s(int count)
+          </div>
+          <p>指定した個数の 0.0 ~ 1.0 の倍精度浮動小数点を生成します。</p>
+        </div>
+        <div class="method-card">
+          <div class="method-signature">
+            ReadOnlySpan&lt;long&gt; Randints(int count, long min, long max)
+          </div>
+          <p>指定した範囲 [min, max] の 64bit 整数を一括生成します。</p>
+        </div>
+      </section>
     </main>
-</body>
-
+  </body>
 </html>
