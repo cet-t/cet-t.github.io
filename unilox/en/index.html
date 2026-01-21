@@ -150,13 +150,14 @@
         font-size: 1.1rem;
       }
 
-      pre {
-        background: #0d1117;
+      .pre {
+        background: #1d1f21 !important;
         padding: 1.2rem;
-        border-radius: 4px;
-        overflow-x: auto;
+        border-radius: 6px;
         border: 1px solid var(--docs-border);
+        overflow-x: auto;
         margin: 1.2rem 0;
+        color: #c5c8c6 !important;
       }
 
       code {
@@ -178,16 +179,17 @@
       }
 
       .keyword {
-        color: #ff7b72;
+        color: #b294bb !important;
       }
       .type {
-        color: #d2a8ff;
+        color: #81a2be !important;
       }
       .method {
-        color: #d2a8ff;
+        color: #b5bd68 !important;
       }
       .comment {
-        color: #8b949e;
+        color: #969896 !important;
+        font-style: italic !important;
       }
 
       @media (max-width: 900px) {
@@ -264,10 +266,13 @@
           <code>using</code> statement is recommended to ensure native memory is
           properly released.
         </p>
-        <pre><code><span class="keyword">using</span> <span class="type">var</span> rng = <span class="keyword">new</span> <span class="type">Philox32</span>(seed1, seed2);
+        <pre
+          class="pre"
+        ><code><span class="comment">// Ultra-fast RNG initialization (implements IDisposable)</span>
+<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="type">Philox32</span>(seed1, seed2);
 
-<span class="comment">// Get a float between 0.0 ~ 1.0</span>
-<span class="type">float</span> val = rng.<span class="method">Value</span>();
+<span class="comment">// Get a single value within [0.0, 1.0] at native speed</span>
+<span class="type">float</span> v = rng.<span class="method">Value</span>();
 
 <span class="comment">// Range selection (int) [min, max)</span>
 <span class="type">int</span> damage = rng.<span class="method">Randint</span>(10, 50);
@@ -284,12 +289,14 @@
           overhead, resulting in extreme performance. Results are returned as
           <code>ReadOnlySpan&lt;T&gt;</code> for efficient, zero-copy access.
         </p>
-        <pre><code><span class="comment">// Generate 1000 random numbers at once</span>
-<span class="type">var</span> batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);
+        <pre
+          class="pre"
+        ><code><span class="comment">// Generate 1000 random numbers at once (minimizes Managed-to-Native overhead)</span>
+<span class="type">ReadOnlySpan</span>&lt;<span class="type">float</span>&gt; batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);
 
 <span class="keyword">foreach</span> (<span class="type">var</span> value <span class="keyword">in</span> batch)
 {
-    <span class="comment">// Process...</span>
+    <span class="comment">// Efficient access without copying</span>
 }</code></pre>
       </section>
 

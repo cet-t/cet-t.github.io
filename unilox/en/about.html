@@ -23,6 +23,7 @@
         --crates-link: #d2991d;
         --crates-border: #444;
         --crates-card: #2b2b2b;
+        --docs-border: #444;
       }
 
       * {
@@ -200,31 +201,34 @@
       }
 
       /* Code Blocks */
-      pre {
-        background: #0d1117;
+      /* Code Blocks */
+      .pre {
+        background: #1d1f21 !important;
         padding: 1.2rem;
         border-radius: 6px;
         border: 1px solid var(--crates-border);
         overflow-x: auto;
         margin: 1.5rem 0;
+        color: #c5c8c6 !important;
       }
 
       code {
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
       }
 
       .keyword {
-        color: #ff7b72;
+        color: #b294bb !important;
       }
       .type {
-        color: #d2a8ff;
+        color: #81a2be !important;
       }
       .method {
-        color: #d2a8ff;
+        color: #b5bd68 !important;
       }
       .comment {
-        color: #8b949e;
+        color: #969896 !important;
+        font-style: italic !important;
       }
 
       /* Benchmarks Table-like */
@@ -432,16 +436,16 @@
           <p>
             Unilox is an ultra-fast Random Number Generation (RNG) library
             optimized for Unity game development.<br />
-            The core is <strong>implemented in Rust</strong>, providing a
-            perfect balance of memory safety and native-level execution speed.
+            The core is <strong>implemented in Rust</strong>, providing both
+            memory safety and native-level execution speed.
           </p>
 
           <h2>Performance Comparison</h2>
           <p>
             Unilox delivers performance that far exceeds standard
-            <code>UnityEngine.Random</code> or <code>System.Random</code>. It
-            features highly optimized implementations of Xorshift and Philox
-            algorithms with SIMD support.
+            <code>UnityEngine.Random</code> and <code>System.Random</code>. It
+            features Xorshift and Philox algorithms internally with SIMD
+            optimizations.
           </p>
 
           <div class="benchmark-box">
@@ -477,33 +481,29 @@
                 margin-bottom: 0;
               "
             >
-              * Average time taken for 10 attempts of generating 100 million
-              numbers.
+              * Average time taken for 10 trials of 100 million generations.
             </p>
           </div>
 
-          <h2>Usage Example</h2>
+          <h2>Intuitive Usage Example</h2>
           <p>
-            With its simple and thread-safe API design, Unilox can be integrated
-            into existing projects in minutes.
+            With a simple and thread-safe API design, it can be integrated into
+            existing projects in minutes.
           </p>
 
-          <pre><code><span class="comment">// Very simple initialization</span>
-<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="type">Philox32</span>(seed);
+          <pre
+            class="pre"
+          ><code><span class="comment">// Ultra-fast RNG initialization (implements IDisposable)</span>
+<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="type">Philox32</span>(seed1, seed2);
 
-<span class="comment">// Get a single value (0.0 ~ 1.0)</span>
-<span class="type">float</span> val = rng.<span class="method">Value</span>();
+<span class="comment">// Get a single value within [0.0, 1.0] at native speed</span>
+<span class="type">float</span> v = rng.<span class="method">Value</span>();
 
-<span class="comment">// Get a value within range [min, max]</span>
-<span class="type">int</span> i = rng.<span class="method">Randint</span>(0, 10);
+<span class="comment">// Get an integer within range [10, 50)</span>
+<span class="type">int</span> damage = rng.<span class="method">Randint</span>(10, 50);
 
-<span class="comment">// Powerful ultra-fast batch generation (via ReadOnlySpan)</span>
-<span class="type">var</span> batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);</code></pre>
-
-          <h2>License</h2>
-          <p>
-            Unilox is distributed under the MIT License or Apache License 2.0.
-          </p>
+<span class="comment">// Powerful batch generation (minimizes Managed-to-Native overhead)</span>
+<span class="type">ReadOnlySpan</span>&lt;<span class="type">float</span>&gt; batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);</code></pre>
         </article>
 
         <!-- Sidebar -->
@@ -558,12 +558,21 @@
               <span class="label">Performance</span>
             </div>
           </div>
+
+          <div class="sidebar-section">
+            <h3>License</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 5px">
+              <span class="label">MIT</span>
+              <span class="label">Apache-2.0</span>
+            </div>
+          </div>
         </aside>
       </div>
     </main>
+
     <script>
       const searchData = [
-        { name: "unilox", type: "Project", url: "../en/about.html" },
+        { name: "unilox", type: "Project", url: "../ja/about.html" },
         { name: "rng", type: "Project", url: "../../rng/index.html" },
         { name: "Philosophy", type: "Section", url: "about.html" },
         { name: "Philox", type: "Algorithm", url: "index.html#algorithms" },
@@ -670,18 +679,13 @@
           }
 
           if (tag) {
-            // Update Title Version
-            // Note: 'current-version' element is not present in the provided document snippet.
-            // If it exists elsewhere in the full document, it will be updated.
             const currentVersionElement =
               document.getElementById("current-version");
-            if (currentVersionElement) {
-              currentVersionElement.textContent = tag;
-            }
-            // Update Install Line (remove 'v' prefix for Cargo style)
+            if (currentVersionElement) currentVersionElement.textContent = tag;
             const versionOnly = tag.startsWith("v") ? tag.substring(1) : tag;
-            document.getElementById("install-text").textContent =
-              `unilox = "${versionOnly}"`;
+            const installTextElement = document.getElementById("install-text");
+            if (installTextElement)
+              installTextElement.textContent = `unilox = "${versionOnly}"`;
           }
         } catch (e) {
           console.warn("Failed to sync version", e);
