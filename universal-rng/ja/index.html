@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unilox Documentation</title>
+    <title>Universal RNG Documentation</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -207,25 +207,25 @@
   <body>
     <aside class="sidebar">
       <a href="about.html" class="logo-link">
-        <div class="logo"><i class="fas fa-bolt"></i> Unilox</div>
+        <div class="logo"><i class="fas fa-bolt"></i> Universal RNG</div>
       </a>
       <nav>
         <div class="nav-group">
-          <div class="nav-title">Introduction</div>
-          <a href="#overview" class="nav-link">Overview</a>
-          <a href="#install" class="nav-link">Installation</a>
+          <div class="nav-title">はじめに</div>
+          <a href="#overview" class="nav-link">概要</a>
+          <a href="#install" class="nav-link">インストール</a>
         </div>
         <div class="nav-group">
-          <div class="nav-title">Usage</div>
-          <a href="#basics" class="nav-link">Basics</a>
-          <a href="#batch" class="nav-link">Batch Generation</a>
+          <div class="nav-title">使い方</div>
+          <a href="#basics" class="nav-link">基本操作</a>
+          <a href="#batch" class="nav-link">一括生成 (Batch)</a>
         </div>
         <div class="nav-group">
-          <div class="nav-title">Algorithms</div>
-          <a href="#algorithms" class="nav-link">Available Engines</a>
+          <div class="nav-title">アルゴリズム</div>
+          <a href="#algorithms" class="nav-link">利用可能なエンジン</a>
         </div>
         <div class="nav-group">
-          <div class="nav-title">API Reference</div>
+          <div class="nav-title">API リファレンス</div>
           <a href="#api-rng32" class="nav-link">IRng32</a>
           <a href="#api-rng64" class="nav-link">IRng64</a>
         </div>
@@ -234,81 +234,80 @@
 
     <main class="content">
       <section id="overview">
-        <h1>Crate unilox</h1>
+        <h1>Universal RNG</h1>
         <p>
-          Unilox is an ultra-fast Random Number Generation (RNG) library
-          optimized for Unity game development.
+          Universal
+          RNGは、Unityでのゲーム開発に最適化された高速・高品質な乱数生成（RNG）ライブラリです。
           <span class="rust-badge"
             ><i class="fa-brands fa-rust"></i> Powered by Rust</span
           >
         </p>
         <p>
-          Providing performance unattainable with standard
-          <code>UnityEngine.Random</code> or <code>System.Random</code>, Unilox
-          proves its true value in high-density simulations and complex
-          procedural content generation.
+          標準の <code>UnityEngine.Random</code> や
+          <code>System.Random</code> では到達できないパフォーマンスを提供し、
+          特に大量の個体を扱うシミュレーションや、複雑なプロシージャルコンテンツ生成においてその真価を発揮します。
         </p>
       </section>
 
       <section id="install">
-        <h2>Installation</h2>
+        <h2>インストール</h2>
         <p>
-          Install via Unity Package Manager (UPM) or import the provided
-          <code>.unitypackage</code>. The core is bundled as native libraries
-          (.dll / .so / .bundle), executing optimized code for each platform.
+          Unity Package Manager (UPM) から導入するか、提供される
+          <code>.unitypackage</code> をインポートしてください。
         </p>
       </section>
 
       <section id="basics">
-        <h2>Basics</h2>
+        <h2>基本操作</h2>
         <p>
-          All RNG classes inherit from <code>IDisposable</code>. Using the
-          <code>using</code> statement is recommended to ensure native memory is
-          properly released.
+          すべてのRNGクラスは <code>IDisposable</code> を継承しています。
+          ネイティブメモリの確実な解放のため、<code>using</code>
+          ステートメントの利用を推奨します。
         </p>
         <pre
           class="pre"
-        ><code><span class="comment">// Ultra-fast RNG initialization (implements IDisposable)</span>
-<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="type">Philox32</span>(seed1, seed2);
+        ><code><span class="comment">// 超高速な乱数生成器の初期化 (IDisposable を実装)</span>
+<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="type">Mt19937</span>(seed, warm);
 
-<span class="comment">// Get a single value within [0.0, 1.0] at native speed</span>
+<span class="comment">// 0.0 ~ 1.0 の浮動小数点を爆速で取得</span>
 <span class="type">float</span> v = rng.<span class="method">Value</span>();
 
-<span class="comment">// Range selection (int) [min, max)</span>
+<span class="comment">// 範囲指定 (int) [min, max)</span>
 <span class="type">int</span> damage = rng.<span class="method">Randint</span>(10, 50);
 
-<span class="comment">// Range selection (float) [min, max]</span>
+<span class="comment">// 範囲指定 (float) [min, max]</span>
 <span class="type">float</span> height = rng.<span class="method">Randfloat</span>(0.0f, 10.0f);</code></pre>
       </section>
 
       <section id="batch">
-        <h2>Batch Generation</h2>
+        <h2>一括生成 (Batch Generation)</h2>
         <p>
-          The standout feature of Unilox is its ability to generate multiple
-          random numbers in a single call. This minimizes managed-to-native call
-          overhead, resulting in extreme performance. Results are returned as
-          <code>ReadOnlySpan&lt;T&gt;</code> for efficient, zero-copy access.
+          Universal
+          RNGの最大の特徴は、一度の呼び出しで複数の乱数を生成する一括生成機能です。
+          マネージド・ネイティブ間の呼び出しオーバーヘッドを最小化し、極めて高速に動作します。
+          結果は
+          <code>ReadOnlySpan&lt;T&gt;</code>
+          として返されるため、コピーなしで効率的にアクセス可能です。
         </p>
         <pre
           class="pre"
-        ><code><span class="comment">// Generate 1000 random numbers at once (minimizes Managed-to-Native overhead)</span>
+        ><code><span class="comment">// 1000個の乱数を一括生成 (マネージド-ネイティブ間の遷移を最小化)</span>
 <span class="type">ReadOnlySpan</span>&lt;<span class="type">float</span>&gt; batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);
 
 <span class="keyword">foreach</span> (<span class="type">var</span> value <span class="keyword">in</span> batch)
 {
-    <span class="comment">// Efficient access without copying</span>
+    <span class="comment">// コピーなしで効率的にアクセス可能</span>
 }</code></pre>
       </section>
 
       <section id="algorithms">
-        <h2>Available Algorithms</h2>
-        <p>Choose the best algorithm for your specific use case.</p>
+        <h2>利用可能なアルゴリズム</h2>
+        <p>用途に応じて最適なアルゴリズムを選択できます。</p>
 
         <div class="method-card">
           <div class="method-signature">Philox32 / Philox64</div>
           <p>
-            Counter-based RNG. Ideal for parallel processing, providing
-            excellent reproducibility in GPU and multi-threaded environments.
+            カウンタベースのRNG。並列処理に極めて強く、GPUやマルチスレッド環境での再現性に優れます。
           </p>
         </div>
 
@@ -317,71 +316,79 @@
             Xorshift32 / Xorshift64 / Xorshift128
           </div>
           <p>
-            Ultra-lightweight algorithms. Extremely low memory footprint and
-            blazing fast performance.
+            非常に軽量なアルゴリズム。メモリ消費が極めて少なく、爆速で動作します。
           </p>
         </div>
 
         <div class="method-card">
           <div class="method-signature">Mt19937 / Mt1993764</div>
           <p>
-            Traditional Mersenne Twister. Very long periods and excellent
-            statistical properties.
+            伝統的なMersenne Twister。周期が非常に長く、統計的性質に優れます。
           </p>
         </div>
 
         <div class="method-card">
           <div class="method-signature">Pcg32</div>
+          <p>予測困難性と速度のバランスに優れたモダンなアルゴリズムです。</p>
+        </div>
+
+        <div class="method-card">
+          <div class="method-signature">Sfc64</div>
           <p>
-            A modern algorithm with a perfect balance of unpredictability and
-            speed.
+            "Small Fast Chaotic"
+            PRNG。極めて高速かつ省メモリで、64ビット環境でのシミュレーションに最適です。
+          </p>
+        </div>
+
+        <div class="method-card">
+          <div class="method-signature">Cet64</div>
+          <p>
+            高度なビット回転と乗算を組み合わせた独自の64ビット生成器。複雑なミキシングにより高いランダム性を実現します。
           </p>
         </div>
       </section>
 
       <section id="api-rng32">
-        <h2>IRng32 Reference</h2>
+        <h2>IRng32 リファレンス</h2>
         <div class="method-card">
           <div class="method-signature">
             ReadOnlySpan&lt;uint&gt; NextU32s(int count)
           </div>
-          <p>Generates the specified number of 32-bit unsigned integers.</p>
+          <p>指定した個数の 32bit 無符号整数を生成します。</p>
         </div>
         <div class="method-card">
           <div class="method-signature">
             ReadOnlySpan&lt;float&gt; NextF32s(int count)
           </div>
-          <p>Generates the specified number of floats between 0.0 and 1.0.</p>
+          <p>指定した個数の 0.0 ~ 1.0 の浮動小数点を生成します。</p>
         </div>
         <div class="method-card">
           <div class="method-signature">
             ReadOnlySpan&lt;int&gt; Randints(int count, int min, int max)
           </div>
-          <p>Generates a batch of integers within the range [min, max].</p>
+          <p>指定した範囲 [min, max] の整数を一括生成します。</p>
         </div>
       </section>
 
       <section id="api-rng64">
-        <h2>IRng64 Reference</h2>
+        <h2>IRng64 リファレンス</h2>
         <div class="method-card">
           <div class="method-signature">
             ReadOnlySpan&lt;ulong&gt; NextU64s(int count)
           </div>
-          <p>Generates the specified number of 64-bit unsigned integers.</p>
+          <p>指定した個数の 64bit 無符号整数を生成します。</p>
         </div>
         <div class="method-card">
           <div class="method-signature">
             ReadOnlySpan&lt;double&gt; NextF64s(int count)
           </div>
-          <p>Generates the specified number of doubles between 0.0 and 1.0.</p>
+          <p>指定した個数の 0.0 ~ 1.0 の倍精度浮動小数点を生成します。</p>
         </div>
         <div class="method-card">
           <div class="method-signature">
             ReadOnlySpan&lt;long&gt; Randints(int count, long min, long max)
           </div>
-          <p>
-            Generates a batch of 64-bit integers within the range [min, max].
-          </p>
+          <p>指定した範囲 [min, max] の 64bit 整数を一括生成します。</p>
         </div>
       </section>
     </main>

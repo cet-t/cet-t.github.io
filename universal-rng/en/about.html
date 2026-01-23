@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>unilox - crates.io: Rust package registry</title>
+    <title>Universal RNG - crates.io: Rust package registry</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -201,14 +201,15 @@
       }
 
       /* Code Blocks */
+      /* Code Blocks */
       .pre {
-        background: #1d1f21 !important; /* Official Coal background */
+        background: #1d1f21 !important;
         padding: 1.2rem;
         border-radius: 6px;
         border: 1px solid var(--crates-border);
         overflow-x: auto;
         margin: 1.5rem 0;
-        color: #c5c8c6 !important; /* Default Coal text */
+        color: #c5c8c6 !important;
       }
 
       code {
@@ -217,16 +218,16 @@
       }
 
       .keyword {
-        color: #b294bb !important; /* Keyword: Muted Purple */
+        color: #b294bb !important;
       }
       .type {
-        color: #81a2be !important; /* Type/Class: Steel Blue */
+        color: #81a2be !important;
       }
       .method {
-        color: #b5bd68 !important; /* Method: Sage Green */
+        color: #b5bd68 !important;
       }
       .comment {
-        color: #969896 !important; /* Comment: Cool Gray */
+        color: #969896 !important;
         font-style: italic !important;
       }
 
@@ -407,7 +408,7 @@
       <div class="header-right">
         <div class="dropdown">
           <a href="#" class="tab"
-            ><i class="fas fa-language"></i> 言語
+            ><i class="fas fa-language"></i> Language
             <i class="fas fa-caret-down"></i
           ></a>
           <div class="dropdown-content">
@@ -421,9 +422,9 @@
     <div class="crate-header">
       <div class="container">
         <div class="crate-title-row">
-          <span class="crate-name">unilox</span>
-          <span class="crate-version" id="current-version">v1.2.0</span>
-          <span class="label">MIT / Apache-2.0</span>
+          <span class="crate-name">Universal RNG</span>
+          <span class="crate-version" id="current-version">v0.1.0</span>
+          <span class="label">MIT</span>
         </div>
       </div>
     </div>
@@ -433,38 +434,48 @@
         <!-- Main Readme Content -->
         <article class="readme-content">
           <p>
-            Uniloxは、Unityでのゲーム開発に最適化された超高速乱数生成（RNG）ライブラリです。<br />
-            核心部は<strong>Rustで実装</strong>されており、メモリ安全性とネイティブ級の実行速度を両立しています。
+            Universal RNG is a high-performance, high-quality Random Number
+            Generation (RNG) library optimized for Unity game development.<br />
+            The core is <strong>implemented in Rust</strong>, providing both
+            memory safety and native-level execution speed.
           </p>
 
-          <h2>実行速度の比較</h2>
+          <h2>Performance Comparison</h2>
           <p>
-            Uniloxは、標準の <code>UnityEngine.Random</code> や
-            <code>System.Random</code> を凌駕するパフォーマンスを提供します。
-            内部に Xorshift や Philox
-            アルゴリズムを搭載し、SIMD最適化が施されています。
+            Universal RNG delivers performance that far exceeds standard
+            <code>UnityEngine.Random</code> and <code>System.Random</code>. It
+            features Xorshift and Philox algorithms internally with SIMD
+            optimizations.
           </p>
 
           <div class="benchmark-box">
             <div class="chart-row">
               <div class="bar-label">
-                <span>Unilox (Philox32)</span><span>62.5 ms</span>
+                <span>Universal RNG (Mt19937)</span><span>94.3 ms</span>
               </div>
               <div class="bar-bg">
-                <div class="bar-fill" style="width: 7%"></div>
+                <div class="bar-fill" style="width: 10%"></div>
               </div>
             </div>
             <div class="chart-row">
               <div class="bar-label">
-                <span>UnityEngine.Random</span><span>723.7 ms</span>
+                <span>Unity.Mathematics</span><span>401.8 ms</span>
               </div>
               <div class="bar-bg">
-                <div class="bar-fill" style="width: 82%; opacity: 0.4"></div>
+                <div class="bar-fill" style="width: 44%; opacity: 0.4"></div>
               </div>
             </div>
             <div class="chart-row">
               <div class="bar-label">
-                <span>System.Random</span><span>885.6 ms</span>
+                <span>UnityEngine.Random</span><span>719.7 ms</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 79%; opacity: 0.4"></div>
+              </div>
+            </div>
+            <div class="chart-row">
+              <div class="bar-label">
+                <span>System.Random</span><span>912.2 ms</span>
               </div>
               <div class="bar-bg">
                 <div class="bar-fill" style="width: 100%; opacity: 0.4"></div>
@@ -478,35 +489,37 @@
                 margin-bottom: 0;
               "
             >
-              ※ 1億個の生成を10回試行した際の平均時間。
+              * Average time taken for 10 trials of 100 million generations.
             </p>
           </div>
 
-          <h2>直感的な使用例</h2>
+          <h2>Intuitive Usage Example</h2>
           <p>
-            シンプルかつスレッドセーフなAPI設計により、既存のプロジェクトに数分で組み込むことが可能です。
+            With a simple and thread-safe API design, it can be integrated into
+            existing projects in minutes.
           </p>
 
           <pre
             class="pre"
-          ><code><span class="comment">// 超高速な乱数生成器の初期化 (IDisposable を実装)</span>
-<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="type">Philox32</span>(seed1, seed2);
+          ><code><span class="comment">// Ultra-fast RNG initialization (implements IDisposable)</span>
+<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="type">Mt19937</span>(seed, warm);
 
-<span class="comment">// [0.0, 1.0] の浮動小数点を爆速で取得</span>
+<span class="comment">// Get a single value within [0.0, 1.0] at native speed</span>
 <span class="type">float</span> v = rng.<span class="method">Value</span>();
 
-<span class="comment">// 指定範囲 [10, 50) の整数を取得</span>
+<span class="comment">// Get an integer within range [10, 50)</span>
 <span class="type">int</span> damage = rng.<span class="method">Randint</span>(10, 50);
 
-<span class="comment">// 1000個の乱数を一括生成 (マネージド-ネイティブ間の遷移を最小化)</span>
+<span class="comment">// Powerful batch generation (minimizes Managed-to-Native overhead)</span>
 <span class="type">ReadOnlySpan</span>&lt;<span class="type">float</span>&gt; batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);</code></pre>
         </article>
 
+        <!-- Sidebar -->
         <aside class="sidebar">
           <div class="sidebar-section">
             <h3>Install</h3>
             <div class="install-box">
-              <span id="install-text">unilox = "1.2.0"</span>
+              <span id="install-text">universal-rng = "0.1.0"</span>
               <i class="far fa-copy"></i>
             </div>
           </div>
@@ -558,19 +571,21 @@
             <h3>License</h3>
             <div style="display: flex; flex-wrap: wrap; gap: 5px">
               <span class="label">MIT</span>
-              <span class="label">Apache-2.0</span>
             </div>
           </div>
         </aside>
       </div>
     </main>
+
     <script>
       const searchData = [
-        { name: "unilox", type: "Project", url: "../ja/about.html" },
+        { name: "Universal RNG", type: "Project", url: "../ja/about.html" },
         { name: "rng", type: "Project", url: "../../rng/index.html" },
         { name: "Philosophy", type: "Section", url: "about.html" },
         { name: "Philox", type: "Algorithm", url: "index.html#algorithms" },
         { name: "Xorshift", type: "Algorithm", url: "index.html#algorithms" },
+        { name: "Sfc64", type: "Algorithm", url: "index.html#algorithms" },
+        { name: "Cet64", type: "Algorithm", url: "index.html#algorithms" },
         {
           name: "Mersenne Twister",
           type: "Algorithm",
@@ -679,7 +694,7 @@
             const versionOnly = tag.startsWith("v") ? tag.substring(1) : tag;
             const installTextElement = document.getElementById("install-text");
             if (installTextElement)
-              installTextElement.textContent = `unilox = "${versionOnly}"`;
+              installTextElement.textContent = `universal-rng = "${versionOnly}"`;
           }
         } catch (e) {
           console.warn("Failed to sync version", e);
