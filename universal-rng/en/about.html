@@ -434,11 +434,40 @@
         <!-- Main Readme Content -->
         <article class="readme-content">
           <p>
-            Universal RNG is a high-performance, high-quality Random Number
-            Generation (RNG) library optimized for Unity game development.<br />
-            The core is <strong>implemented in Rust</strong>, providing both
-            memory safety and native-level execution speed.
+            Universal RNG (URng) is an ultra-fast, high-quality random number
+            library for Unity, specialized for the bulk generation of massive
+            amounts of random numbers.
           </p>
+          <ul style="list-style: none; padding-left: 0">
+            <li style="margin-bottom: 0.8rem">
+              <i
+                class="fas fa-cubes"
+                style="color: var(--crates-orange); margin-right: 8px"
+              ></i
+              ><strong>Pinnacle of Static Batch Generation</strong>: Instantly
+              deploys millions to hundreds of millions of random numbers into
+              memory. Drastically reduces load times for terrain generation and
+              large-scale simulations.
+            </li>
+            <li style="margin-bottom: 0.8rem">
+              <i
+                class="fas fa-microchip"
+                style="color: var(--crates-orange); margin-right: 8px"
+              ></i
+              ><strong>Fusion of Rust &times; Burst</strong>: Robust algorithms
+              designed in Rust are optimized with Unity's Burst compiler to
+              extract maximum native performance.
+            </li>
+            <li style="margin-bottom: 0.8rem">
+              <i
+                class="fas fa-bolt"
+                style="color: var(--crates-orange); margin-right: 8px"
+              ></i
+              ><strong>Zero-Copy Design</strong>: Achieves blazing-fast data
+              delivery with minimal memory allocation via the
+              <code>Span&lt;T&gt;</code> API.
+            </li>
+          </ul>
 
           <h2>Performance Comparison</h2>
           <p>
@@ -451,31 +480,47 @@
           <div class="benchmark-box">
             <div class="chart-row">
               <div class="bar-label">
-                <span>Universal RNG (Mt19937)</span><span>94.3 ms</span>
+                <span>Universal RNG (Pcg32)</span><span>79.5 ms</span>
               </div>
               <div class="bar-bg">
-                <div class="bar-fill" style="width: 10%"></div>
+                <div class="bar-fill" style="width: 9%"></div>
               </div>
             </div>
             <div class="chart-row">
               <div class="bar-label">
-                <span>Unity.Mathematics</span><span>401.8 ms</span>
+                <span>Universal RNG (Sfc64)</span><span>82.0 ms</span>
               </div>
               <div class="bar-bg">
-                <div class="bar-fill" style="width: 44%; opacity: 0.4"></div>
+                <div class="bar-fill" style="width: 9.4%"></div>
               </div>
             </div>
             <div class="chart-row">
               <div class="bar-label">
-                <span>UnityEngine.Random</span><span>719.7 ms</span>
+                <span>Universal RNG (Mt19937)</span><span>88.4 ms</span>
               </div>
               <div class="bar-bg">
-                <div class="bar-fill" style="width: 79%; opacity: 0.4"></div>
+                <div class="bar-fill" style="width: 10.1%"></div>
               </div>
             </div>
             <div class="chart-row">
               <div class="bar-label">
-                <span>System.Random</span><span>912.2 ms</span>
+                <span>Unity.Mathematics</span><span>403.9 ms</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 46.3%; opacity: 0.4"></div>
+              </div>
+            </div>
+            <div class="chart-row">
+              <div class="bar-label">
+                <span>UnityEngine.Random</span><span>761.3 ms</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 87.4%; opacity: 0.4"></div>
+              </div>
+            </div>
+            <div class="chart-row">
+              <div class="bar-label">
+                <span>System.Random</span><span>871.1 ms</span>
               </div>
               <div class="bar-bg">
                 <div class="bar-fill" style="width: 100%; opacity: 0.4"></div>
@@ -499,19 +544,38 @@
             existing projects in minutes.
           </p>
 
-          <pre
-            class="pre"
-          ><code><span class="comment">// Ultra-fast RNG initialization (implements IDisposable)</span>
-<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="type">Mt19937</span>(seed, warm);
+          <pre class="pre"><code><span class="keyword">using</span> Cet.Rng;
 
-<span class="comment">// Get a single value within [0.0, 1.0] at native speed</span>
-<span class="type">float</span> v = rng.<span class="method">Value</span>();
+<span class="comment">// Mersenne Twister (32-bit): Initialize with seeds</span>
+<span class="keyword">using var</span> mt = <span class="keyword">new</span> <span class="type">Mt19937</span>(1, 1024);
+Debug.<span class="method">Assert</span>(mt.<span class="method">Next</span>() == 244660247);
+<span class="comment">// Batch generation (Returns Span&lt;uint&gt;)</span>
+Debug.<span class="method">Assert</span>(mt.<span class="method">NextU32s</span>(3).<span class="method">SequenceEqual</span>(<span class="keyword">new</span> <span class="type">uint</span>[] 
+{ 
+    1183135446, 
+    982747242, 
+    221797415 
+}));
 
-<span class="comment">// Get an integer within range [10, 50)</span>
-<span class="type">int</span> damage = rng.<span class="method">Randint</span>(10, 50);
+<span class="comment">// Sfc64 (64-bit): High-speed, chaotic PRNG</span>
+<span class="keyword">using var</span> sfc = <span class="keyword">new</span> <span class="type">Sfc64</span>(1);
+Debug.<span class="method">Assert</span>(sfc.<span class="method">Next</span>() == 4613303445314885483);
+Debug.<span class="method">Assert</span>(sfc.<span class="method">NextU64s</span>(3).<span class="method">SequenceEqual</span>(<span class="keyword">new</span> <span class="type">ulong</span>[] 
+{ 
+    9250377774926580674, 
+    11474594222839663884, 
+    10182195164632316717 
+}));
 
-<span class="comment">// Powerful batch generation (minimizes Managed-to-Native overhead)</span>
-<span class="type">ReadOnlySpan</span>&lt;<span class="type">float</span>&gt; batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);</code></pre>
+<span class="comment">// PCG (32-bit): Statistically excellent PRNG</span>
+<span class="keyword">using var</span> pcg = <span class="keyword">new</span> <span class="type">Pcg32</span>(1);
+Debug.<span class="method">Assert</span>(pcg.<span class="method">Next</span>() == 4164751464);
+Debug.<span class="method">Assert</span>(pcg.<span class="method">NextU32s</span>(3).<span class="method">SequenceEqual</span>(<span class="keyword">new</span> <span class="type">uint</span>[] 
+{ 
+    4202279039, 
+    2817093042, 
+    1081118559 
+}));</code></pre>
         </article>
 
         <!-- Sidebar -->

@@ -265,19 +265,38 @@
           <code>using</code> statement is recommended to ensure native memory is
           properly released.
         </p>
-        <pre
-          class="pre"
-        ><code><span class="comment">// Ultra-fast RNG initialization (implements IDisposable)</span>
-<span class="keyword">using var</span> rng = <span class="keyword">new</span> <span class="type">Mt19937</span>(seed, warm);
+        <pre class="pre"><code><span class="keyword">using</span> Cet.Rng;
 
-<span class="comment">// Get a single value within [0.0, 1.0] at native speed</span>
-<span class="type">float</span> v = rng.<span class="method">Value</span>();
+<span class="comment">// Mersenne Twister (32-bit): Initialize with seeds</span>
+<span class="keyword">using var</span> mt = <span class="keyword">new</span> <span class="type">Mt19937</span>(1, 1024);
+Debug.<span class="method">Assert</span>(mt.<span class="method">Next</span>() == 244660247);
+<span class="comment">// Batch generation (Returns Span&lt;uint&gt;)</span>
+Debug.<span class="method">Assert</span>(mt.<span class="method">NextU32s</span>(3).<span class="method">SequenceEqual</span>(<span class="keyword">new</span> <span class="type">uint</span>[] 
+{ 
+    1183135446, 
+    982747242, 
+    221797415 
+}));
 
-<span class="comment">// Range selection (int) [min, max)</span>
-<span class="type">int</span> damage = rng.<span class="method">Randint</span>(10, 50);
+<span class="comment">// Sfc64 (64-bit): High-speed, chaotic PRNG</span>
+<span class="keyword">using var</span> sfc = <span class="keyword">new</span> <span class="type">Sfc64</span>(1);
+Debug.<span class="method">Assert</span>(sfc.<span class="method">Next</span>() == 4613303445314885483);
+Debug.<span class="method">Assert</span>(sfc.<span class="method">NextU64s</span>(3).<span class="method">SequenceEqual</span>(<span class="keyword">new</span> <span class="type">ulong</span>[] 
+{ 
+    9250377774926580674, 
+    11474594222839663884, 
+    10182195164632316717 
+}));
 
-<span class="comment">// Range selection (float) [min, max]</span>
-<span class="type">float</span> height = rng.<span class="method">Randfloat</span>(0.0f, 10.0f);</code></pre>
+<span class="comment">// PCG (32-bit): Statistically excellent PRNG</span>
+<span class="keyword">using var</span> pcg = <span class="keyword">new</span> <span class="type">Pcg32</span>(1);
+Debug.<span class="method">Assert</span>(pcg.<span class="method">Next</span>() == 4164751464);
+Debug.<span class="method">Assert</span>(pcg.<span class="method">NextU32s</span>(3).<span class="method">SequenceEqual</span>(<span class="keyword">new</span> <span class="type">uint</span>[] 
+{ 
+    4202279039, 
+    2817093042, 
+    1081118559 
+}));</code></pre>
       </section>
 
       <section id="batch">
@@ -292,7 +311,7 @@
         <pre
           class="pre"
         ><code><span class="comment">// Generate 1000 random numbers at once (minimizes Managed-to-Native overhead)</span>
-<span class="type">ReadOnlySpan</span>&lt;<span class="type">float</span>&gt; batch = rng.<span class="method">Randfloats</span>(1000, 0f, 1f);
+<span class="type">ReadOnlySpan</span>&lt;<span class="type">float</span>&gt; batch = rng.<span class="method">RandF32s</span>(1000, 0f, 1f);
 
 <span class="keyword">foreach</span> (<span class="type">var</span> value <span class="keyword">in</span> batch)
 {
