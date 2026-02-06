@@ -335,7 +335,7 @@
             <div class="crate-info">
               <div class="crate-icon"><i class="fas fa-random"></i></div>
               <div>
-                <a href="rng/index.html" class="crate-name">rng</a>
+                <a href="rng/about.html" class="crate-name">rng</a>
                 <span class="crate-version" id="rng-version">v0.5.4</span>
                 <div class="crate-desc">
                   Modular implementations of various random number generation
@@ -346,9 +346,7 @@
             <div class="crate-links">
               <a href="rng/index.html"><i class="fas fa-book"></i> Docs</a>
               <a href="rng/about.html"><i class="fas fa-home"></i> Home</a>
-              <a
-                href="https://docs.rs/rng-pack/latest/src/rng_pack/lib.rs.html"
-                target="_blank"
+              <a href="https://github.com/cet-t/urng" target="_blank"
                 ><i class="fas fa-code"></i> Source</a
               >
             </div>
@@ -364,7 +362,7 @@
           type: "Project",
           url: "universal-rng/index.html",
         },
-        { name: "rng", type: "Project", url: "rng/index.html" },
+        { name: "urng", type: "Project", url: "rng/about.html" },
         {
           name: "Philox",
           type: "Algorithm",
@@ -489,7 +487,7 @@
             repo: "unilox",
             elementId: "unilox-version",
           },
-          { type: "crates", crate: "rng-pack", elementId: "rng-version" },
+          { type: "crates", crate: "urng", elementId: "rng-version" },
         ];
 
         for (const item of repos) {
@@ -510,7 +508,7 @@
               if (response.ok) {
                 const data = await response.json();
                 document.getElementById(item.elementId).textContent =
-                  "v" + data.crate.max_version;
+                  data.crate.newest_version;
               }
             }
           } catch (e) {
